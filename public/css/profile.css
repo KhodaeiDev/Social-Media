@@ -1,0 +1,368 @@
+main.container {
+    margin-top: 30px !important;
+    gap: 12px;
+}
+
+#profile-content {
+    min-width: 70%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#profile-details-card {
+    background: white;
+}
+
+.profile-header {
+    width: 100%;
+    height: 240px;
+    position: relative;
+}
+
+.profile-header img.cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(1px);
+    user-select: none;
+}
+
+.profile-pic-card {
+    position: absolute;
+    z-index: 10;
+    bottom: -25%;
+    left: 24px;
+}
+
+.profile-main {
+    padding: 24px;
+    margin-top: 38px;
+}
+
+.profile-pic {
+    width: 120px;
+    border-radius: 100%;
+}
+
+#profile-username {
+    color: #1c1c1c;
+    font-weight: bolder;
+}
+
+#profile-id {
+    color: rgb(75, 75, 75);
+    font-size: 14px;
+}
+
+.profile-sidebar {
+    width: 100%;
+    border-radius: 8px;
+    max-height: max-content;
+}
+
+.unfollow-button {
+    height: max-content;
+    padding: 12px 18px;
+    background-color: rgb(76, 176, 216);
+
+    color: white;
+    transition: all ease 200ms;
+    font-size: 12px;
+    border: 2px solid rgb(67, 171, 212);
+
+    border-radius: 25px;
+}
+
+#profile-feeds {
+    margin-top: 12px;
+    padding: 4px;
+}
+.unfollow-button:hover {
+    background-color: rgb(57, 159, 200);
+
+}
+
+#profile-caption {
+    color: rgb(36, 36, 36);
+    width: 80%;
+}
+
+
+.profile-feed__button {
+    padding: 12px;
+    border-bottom: 4px solid rgb(201, 201, 201);
+}
+
+.isActive {
+    border-bottom: 4px solid rgb(148, 75, 201);
+    color: rgb(148, 75, 201);
+    font-weight: bolder;
+}
+
+.count {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.profile-feed-card {
+    padding: 18px 12px;
+    margin: 12px 0;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    width: 100%;
+
+}
+
+.feed-profile-picture {
+    width: 64px;
+    border-radius: 100%;
+}
+
+.feed-username {
+    font-size: 17px;
+}
+
+
+.feed-image {
+    margin: 12px 0 6px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+
+.feed-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feed-card-content {
+    margin-left: 8px;
+
+}
+
+.profile-side-card {
+    margin: 12px 0;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+
+.profile-side-card:first-child {
+    margin: 0 !important;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+
+
+.people-follow {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.follow-button {
+    color: #5a67d8;
+    transition: all ease 200ms;
+    padding: 8px 24px;
+    border: 2px solid #5a67d8;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all ease 200ms;
+}
+
+
+
+.follow-button:hover {
+    background: #5a67d8;
+    color: white;
+}
+
+
+.modal-screen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.485);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 300ms;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#modal-card {
+    width: 380px;
+    padding: 21px 12px;
+    background: white;
+    border-radius: 12px;
+    margin: 120px auto;
+}
+
+
+#modal-header {
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.168);
+}
+
+h6 {
+    font-size: 14px;
+}
+
+.following-card {
+    padding: 5px 8px;
+    cursor: pointer;
+    margin: 6px 0;
+    transition: all ease 200ms;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.its-empty {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 24px;
+}
+
+.not-found-image {
+    width: 440px;
+    max-height: max-content;
+}
+
+.reels-container {
+    display: grid;
+    margin-top: 24px;
+    grid-template-rows: 350px 350px 350px 350px 350px 350px;
+    grid-template-columns: repeat(4, 228px);
+}
+
+
+.reel {
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 6;
+    overflow: hidden;
+}
+
+.reels_container {
+    display: grid;
+    grid-template-columns: repeat(4, 227px);
+    grid-template-rows: repeat(3, 370px);
+}
+
+.reel img.content {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reel-shade {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+    transition: col ease 200ms;
+}
+
+
+.reel-details {
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    padding: 12px;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#whats-happening {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.wh-card {
+    width: 86px;
+    height: 86px;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.wh-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.manage-button {
+    height: max-content;
+    padding: 11px 18px;
+    color: rgb(142, 67, 212);
+    transition: all ease 200ms;
+    font-size: 12px;
+    border: 2px solid rgb(142, 67, 212);
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.manage-button:hover {
+    background: rgb(142, 67, 212);
+    color: white;
+}
+
+
+#send-verify-code {
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    border-radius: 6px;
+    transition: all ease 200ms;
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Poppins-SemiBold';
+    color: white;
+    background: var(--main-color);
+}
+
+
+#send-verify-code:hover {
+    background: var(--indigo-color);
+}
+
+
+
