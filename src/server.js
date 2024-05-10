@@ -8,16 +8,24 @@ function startServer() {
   });
 }
 
-function dbConnected() {
-  mongoose
+// Mongo DB Connection
+async function dbConnected() {
+  await mongoose
     .connect(process.env.Db_URI)
-    .then(() => console.log("Connected To DB Successfully"))
-    .catch((err) => console.log("DB ERR Connected =>", err));
+    .then(() =>
+      console.log(
+        `Mongo DB Connected Successfully On : ${mongoose.connection.host} `
+      )
+    )
+    .catch((err) => {
+      console.log("DB ERR Connected =>", err);
+      process.exit(1);
+    });
 }
 
-function run() {
+async function run() {
   startServer();
-  dbConnected();
+  await dbConnected();
 }
 
 run();
