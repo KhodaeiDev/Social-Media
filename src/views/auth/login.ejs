@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> SabzSocial | Login</title>
+    <title> Social | Login</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -14,7 +14,7 @@
 <body class="auth-page">
     <section id="auth-container">
 
-        <form id="auth-form">
+        <form id="auth-form" action="/auth/login" method="post">
             <header>
                 <h2 class="text-3xl">
                     Welcome back 🌞
@@ -26,10 +26,10 @@
 
                 <div class="auth-input-card">
                     <label for="register_username" class="font-Poppins-Medium">
-                        username or email
+                        email :
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_username" type="text" class="auth-input"
+                        <input id="register_username" type="text" name="email" class="auth-input"
                             placeholder="Please enter the your username..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -47,10 +47,10 @@
 
                 <div class="auth-input-card">
                     <label for="register_password" class="font-Poppins-Medium">
-                        Password
+                        Password :
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_password" type="password" class="auth-input"
+                        <input id="register_password" type="password" name="password" class="auth-input"
                             placeholder="Please enter the your password..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -88,6 +88,24 @@
     </div>
 
     </form>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if("<%= locals.messages.error%>"){
+            swal({
+                title: "<%=locals.messages.error%>",
+                icon: "error",
+                button: "Try Again",
+                });
+        }else if ("<%= locals.messages.success%>"){
+            swal({
+                title: "<%=locals.messages.success%>",
+                icon: "success",
+                button: "Hooraaa😍✅",
+                });
+        }
+    </script>
+
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const { errorResponse, successResponse } = require("../../utils/responses");
 const userModel = require("./../../model/user");
 const refreshTokenModel = require("./../../model/RefreshToken");
@@ -50,6 +51,33 @@ exports.register = async (req, res, next) => {
 
     req.flash("success", "You Registered successfully");
     return res.redirect("/auth/register");
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.showLoginViews = async (req, res) => {
+  return res.render("auth/login");
+};
+
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      req.flash("error", "User Not Found");
+      return res.redirect("/auth/login");
+    }
+
+    const confirmPass = await bcrypt.compare(password, user.password);
+    if (!confirmPass) {
+      req.flash("error", "Invalid Email or Password");
+      return res.redirect("/auth/login");
+    }
+
+    req.flash("success", "Your Logined Successfully");
+    return res.redirect("/auth/login");
   } catch (err) {
     return next(err);
   }
