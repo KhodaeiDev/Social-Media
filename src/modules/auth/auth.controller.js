@@ -1,6 +1,8 @@
 const { errorResponse, successResponse } = require("../../utils/responses");
 const userModel = require("./../../model/user");
+const refreshTokenModel = require("./../../model/RefreshToken");
 const { registerValidation } = require("./auth.validator");
+const { generateAccessToken } = require("../../utils/auth");
 
 exports.showRegisterViews = async (req, res) => {
   return res.render("auth/register");
@@ -32,6 +34,18 @@ exports.register = async (req, res, next) => {
       email,
       role: isFirstUser ? "ADMIN" : "USER",
       password,
+    });
+
+    const accessToken = generateAccessToken(user);
+    const refreshToken = await refreshTokenModel.createToken(user);
+
+    res.cookie("access-token", accessToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
+    res.cookie("refresh-token", refreshToken, {
+      maxAge: 900000,
+      httpOnly: true,
     });
 
     req.flash("success", "You Registered successfully");
