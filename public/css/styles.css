@@ -856,3 +856,8 @@ textarea {
   object-fit: cover;
   border-radius: 4px;
 }
+
+.swal-footer {
+  display: flex;
+  justify-content: center;
+}

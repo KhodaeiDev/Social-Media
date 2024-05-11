@@ -1,4 +1,3 @@
-const { min } = require("moment");
 const yup = require("yup");
 
 exports.registerValidation = yup.object({
@@ -17,6 +16,6 @@ exports.registerValidation = yup.object({
     .required("Email is Required Field"),
   password: yup
     .string()
-    .min(8, "password must be at least 3 characters long")
+    .min(8, "password must be at least 8 characters long")
     .required("Password is Required Field"),
 });

@@ -20,7 +20,8 @@ exports.register = async (req, res, next) => {
       .lean();
 
     if (isUserExist) {
-      return errorResponse(res, 400, "the Username Or Email existed");
+      req.flash("error", "the Username Or Email existed");
+      return res.redirect("/auth/register");
     }
 
     const isFirstUser = (await userModel.countDocuments()) === 0;
@@ -33,10 +34,8 @@ exports.register = async (req, res, next) => {
       password,
     });
 
-    return successResponse(res, "201", {
-      message: "User Registerd Successfully",
-      user: { ...user.toObject(), password: undefined },
-    });
+    req.flash("success", "You Registered successfully");
+    return res.redirect("/auth/register");
   } catch (err) {
     return next(err);
   }
