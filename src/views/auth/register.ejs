@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> SabzSocial | Register</title>
-    <link rel="stylesheet" href="/public/css/index.css">
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <!-- id="auth-container" -->
@@ -14,7 +14,7 @@
 <body class="auth-page">
     <section id="auth-container">
 
-        <form id="auth-form">
+        <form id="auth-form" action="/auth/register" method="post">
             <header>
                 <h2 class="text-3xl">
                     Get started now 🌌
@@ -33,7 +33,7 @@
                         Full name
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_fullName" type="text" class="auth-input"
+                        <input id="register_fullName" type="text" name="name" class="auth-input"
                             placeholder="Please enter the your full name..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -51,7 +51,7 @@
                         Username
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_username" type="text" class="auth-input"
+                        <input id="register_username" type="text" name="username" class="auth-input"
                             placeholder="Please enter the your username..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -70,7 +70,7 @@
                         Email address
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_email" type="email" class="auth-input"
+                        <input id="register_email" type="email" name="email" class="auth-input"
                             placeholder="Please enter the your username..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -88,7 +88,7 @@
                         Password
                     </label>
                     <div class="relative flex input-card items-center">
-                        <input id="register_password" type="password" class="auth-input"
+                        <input id="register_password" name="password" type="password" class="auth-input"
                             placeholder="Please enter the your password..">
                         <span class="absolute left-2 top-4 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
