@@ -19,3 +19,14 @@ exports.registerValidation = yup.object({
     .min(8, "password must be at least 8 characters long")
     .required("Password is Required Field"),
 });
+
+exports.loginValidation = yup.object({
+  email: yup
+    .string()
+    .email("must be a Valid Email")
+    .required("Email is Required Field"),
+  password: yup
+    .string()
+    .min(8, "password must be at least 8 characters long")
+    .required("Password is Required Field"),
+});

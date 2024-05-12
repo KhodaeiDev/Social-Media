@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { errorResponse, successResponse } = require("../../utils/responses");
 const userModel = require("./../../model/user");
 const refreshTokenModel = require("./../../model/RefreshToken");
-const { registerValidation } = require("./auth.validator");
+const { registerValidation, loginValidation } = require("./auth.validator");
 const { generateAccessToken } = require("../../utils/auth");
 
 exports.showRegisterViews = async (req, res) => {
@@ -63,6 +63,8 @@ exports.showLoginViews = async (req, res) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
+    await loginValidation.validate({ email, password }, { abortEarly: false });
 
     const user = await userModel.findOne({ email });
     if (!user) {
