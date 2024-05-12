@@ -5,6 +5,7 @@ const session = require("express-session");
 const { setHeaders } = require("./middlewares/headers");
 const { errorHandler } = require("./middlewares/errorHandler");
 const authRouter = require("./modules/auth/auth.routes");
+const postRouter = require("./modules/post/post.routes");
 require("dotenv").config();
 
 const app = express();
@@ -28,7 +29,7 @@ app.use(setHeaders);
 
 // static Folder
 app.use("/css", express.static(path.join(__dirname, "./../public/css")));
-app.use("/js", express.static(path.join(__dirname, "./../public/js")));
+app.use("/js", express.static(path.join(__dirname, "./Functions")));
 app.use("/fonts", express.static(path.join(__dirname, "./../public/fonts")));
 app.use("/images", express.static(path.join(__dirname, "./../public/images")));
 
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 app.use("/auth", authRouter);
+app.use("/posts", postRouter);
 
 // 404 Error handler
 app.use((req, res) => {
