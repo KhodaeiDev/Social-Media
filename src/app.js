@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const flash = require("express-flash");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const { setHeaders } = require("./middlewares/headers");
 const { errorHandler } = require("./middlewares/errorHandler");
 const authRouter = require("./modules/auth/auth.routes");
@@ -10,9 +11,12 @@ require("dotenv").config();
 
 const app = express();
 
-// Body Parser
+//* Body Parser
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
+
+//* cookie Parser
+app.use(cookieParser());
 
 //* set Flash & sessions
 app.use(
