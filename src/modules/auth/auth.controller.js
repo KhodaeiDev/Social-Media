@@ -78,6 +78,17 @@ exports.login = async (req, res, next) => {
       return res.redirect("/auth/login");
     }
 
+    const accessToken = generateAccessToken(user);
+    const refreshToken = await refreshTokenModel.createToken(user);
+
+    res.cookie("access-token", accessToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
+    res.cookie("refresh-token", refreshToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
     req.flash("success", "Your Logined Successfully");
     return res.redirect("/auth/login");
   } catch (err) {
