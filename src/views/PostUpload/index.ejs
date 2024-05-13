@@ -59,94 +59,106 @@
 
     <!-- Main -->
     <main id="post-upload-wrapper">
-      <section id="post-upload-container">
-        <!-- File Upload -->
-        <div class="post-upload-box">
-          <h3 class="file-upload-title">File upload</h3>
+      <form method="post">
+        <section id="post-upload-container">
+          <!-- File Upload -->
+          <div class="post-upload-box">
+            <h3 class="file-upload-title">File upload</h3>
 
-          <!-- Upload Input  -->
-          <div id="file-upload-box" class="mt-5">
-            <span class="upload-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-16 h-16"
+            <!-- Upload Input  -->
+            <div id="file-upload-box" class="mt-5">
+              <span class="upload-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-16 h-16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              <div class="upload-file-txt">
+                <p class="max-w-max max-h-max">Upload a file</p>
+              </div>
+              <p
+                class="font-Poppins-Bold text-3xl text-white"
+                id="browse-files"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-            <div class="upload-file-txt">
-              <p class="max-w-max max-h-max">Upload a file</p>
+                Browse file
+              </p>
+
+              <input
+                type="file"
+                id="file-upload-input"
+                accept="video/*, image/*"
+              />
             </div>
-            <p class="font-Poppins-Bold text-3xl text-white" id="browse-files">
-              Browse file
-            </p>
-
-            <input
-              type="file"
-              id="file-upload-input"
-              accept="video/*, image/*"
-            />
-          </div>
-        </div>
-
-        <!-- Post Details -->
-        <div class="post-upload-box">
-          <h3 class="file-upload-title">Post details</h3>
-
-          <div class="mt-6 w-full"></div>
-          <!-- Description -->
-          <div>
-            <label for="post-description">
-              <span> Description </span>
-              <span class="requre-symbol">*</span>
-            </label>
-            <textarea
-              name="post-description"
-              id="post-description"
-              placeholder="Add a description .."
-              class="w-full mt-4"
-            ></textarea>
           </div>
 
-          <!-- Hashtags -->
-          <div class="mt-4">
-            <label for="post-hashtags">
-              <span> Hashtags </span>
-              <span class="requre-symbol">*</span>
-            </label>
-            <input
-              type="text"
-              id="post-hashtags"
-              placeholder="javascript, edit, trend, explore, ne..."
-            />
-            <div
-              id="hashtags-wrap"
-              class="flex text-sm my-2 items-center gap-2"
-            ></div>
-            <span class="text-sm font-Poppins-Light"
-              >Split the hashtags with comma ( , )</span
-            >
-          </div>
-          <div class="alert error">
-            <span> You need to verify your account </span>
+          <!-- Post Details -->
+          <div class="post-upload-box">
+            <h3 class="file-upload-title">Post details</h3>
+
+            <div class="mt-6 w-full"></div>
+            <!-- Description -->
             <div>
-              <button id="send-verification-request" class="send-verification">
-                Send verification
-              </button>
+              <label for="post-description">
+                <span> Description </span>
+                <span class="requre-symbol">*</span>
+              </label>
+              <textarea
+                name="post-description"
+                id="post-description"
+                placeholder="Add a description .."
+                class="w-full mt-4"
+              ></textarea>
+            </div>
+
+            <!-- Hashtags -->
+            <div class="mt-4">
+              <label for="post-hashtags">
+                <span> Hashtags </span>
+                <span class="requre-symbol">*</span>
+              </label>
+              <input
+                type="text"
+                id="post-hashtags"
+                placeholder="javascript, edit, trend, explore, ne..."
+              />
+              <div
+                id="hashtags-wrap"
+                class="flex text-sm my-2 items-center gap-2"
+              ></div>
+              <span class="text-sm font-Poppins-Light"
+                >Split the hashtags with comma ( , )</span
+              >
+            </div>
+
+            <%if(locals.messages.verifyMessage){%>
+            <div class="alert error">
+              <span> You need to verify your account </span>
+              <div>
+                <button
+                  id="send-verification-request"
+                  class="send-verification"
+                >
+                  Send verification
+                </button>
+              </div>
+            </div>
+            <%}%>
+
+            <!-- Upload Button -->
+            <div class="mt-4 flex items-center justify-end">
+              <button id="upload-button" class="max-w-max">Upload post</button>
             </div>
           </div>
-          <!-- Upload Button -->
-          <div class="mt-4 flex items-center justify-end">
-            <button id="upload-button" class="max-w-max">Upload post</button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </form>
     </main>
 
     <section id="modal" class="modal-screen">
