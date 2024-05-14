@@ -59,7 +59,7 @@
 
     <!-- Main -->
     <main id="post-upload-wrapper">
-      <form method="post">
+      <form method="post" , enctype="multipart/form-data">
         <section id="post-upload-container">
           <!-- File Upload -->
           <div class="post-upload-box">
@@ -93,6 +93,7 @@
 
               <input
                 type="file"
+                name="media"
                 id="file-upload-input"
                 accept="video/*, image/*"
               />
@@ -111,7 +112,7 @@
                 <span class="requre-symbol">*</span>
               </label>
               <textarea
-                name="post-description"
+                name="description"
                 id="post-description"
                 placeholder="Add a description .."
                 class="w-full mt-4"
@@ -126,6 +127,7 @@
               </label>
               <input
                 type="text"
+                name="hashtags"
                 id="post-hashtags"
                 placeholder="javascript, edit, trend, explore, ne..."
               />
@@ -154,7 +156,9 @@
 
             <!-- Upload Button -->
             <div class="mt-4 flex items-center justify-end">
-              <button id="upload-button" class="max-w-max">Upload post</button>
+              <button id="upload-button" class="max-w-max" type="submit">
+                Upload post
+              </button>
             </div>
           </div>
         </section>
@@ -168,5 +172,22 @@
 
     <!-- Scripts -->
     <script src="/js/index.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      if ("<%= locals.messages.error%>") {
+        swal({
+          title: "<%=locals.messages.error%>",
+          icon: "error",
+          button: "Try Again",
+        });
+      } else if ("<%= locals.messages.success%>") {
+        swal({
+          title: "<%=locals.messages.success%>",
+          icon: "success",
+          button: "Hooraaa😍✅",
+        });
+      }
+    </script>
   </body>
 </html>

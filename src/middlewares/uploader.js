@@ -19,10 +19,10 @@ exports.multerStorage = (destination, allowedTypes = /jpg|png|jpeg|webp/) => {
   });
 
   const fileFilter = function (req, file, cb) {
-    if (allowedTypes.test(file.mimetypes)) {
+    if (allowedTypes.test(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(null, false);
+      cb(new Error("File type not allowed"));
     }
   };
 
