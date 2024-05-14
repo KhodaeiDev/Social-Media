@@ -6,17 +6,17 @@ const tabs = [
     title: "Posts",
     items: [
       {
-        cover: "/public/images/feed-3.jpg",
+        cover: "/images/feed-3.jpg",
         caption:
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! 💖🙌",
       },
       {
-        cover: "/public/images/feed-1.jpg",
+        cover: "/images/feed-1.jpg",
         caption:
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! 💖🙌",
       },
       {
-        cover: "/public/images/feed-4.jpg",
+        cover: "/images/feed-4.jpg",
         caption:
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque mollitia deleniti cum similique unde atque sapiente! 💖🙌",
       },
@@ -26,12 +26,12 @@ const tabs = [
     id: 2,
     title: "Reels",
     items: [
-      { cover: "/public/images/feed-1.jpg" },
-      { cover: "/public/images/feed-2.jpg" },
-      { cover: "/public/images/feed-3.jpg" },
-      { cover: "/public/images/feed-4.jpg" },
-      { cover: "/public/images/feed-5.jpg" },
-      { cover: "/public/images/feed-6.jpg" },
+      { cover: "/images/feed-1.jpg" },
+      { cover: "/images/feed-2.jpg" },
+      { cover: "/images/feed-3.jpg" },
+      { cover: "/images/feed-4.jpg" },
+      { cover: "/images/feed-5.jpg" },
+      { cover: "/images/feed-6.jpg" },
     ],
   },
   {
@@ -92,7 +92,7 @@ followingsButton.addEventListener("click", () => {
         <div class="flex items-center gap-1">
             <div class="flex items-center gap-2">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src="/public/images/feed-3.jpg" class="w-full object-cover h-full" alt="">
+                    <img src="/images/feed-3.jpg" class="w-full object-cover h-full" alt="">
                 </div>
                 <div>
                     <h6 class="">
@@ -114,7 +114,7 @@ followingsButton.addEventListener("click", () => {
         <div class="flex items-center gap-1">
             <div class="flex items-center gap-2">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src="/public/images/profile-18.jpg" class="w-full object-cover h-full" alt="">
+                    <img src="/images/profile-18.jpg" class="w-full object-cover h-full" alt="">
                 </div>
                 <div>
                     <h6 class="">
@@ -136,7 +136,7 @@ followingsButton.addEventListener("click", () => {
         <div class="flex items-center gap-1">
             <div class="flex items-center gap-2">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src="/public/images/profile-6.jpg" class="w-full object-cover h-full" alt="">
+                    <img src="/images/profile-6.jpg" class="w-full object-cover h-full" alt="">
                 </div>
                 <div>
                     <h6 class="">
@@ -158,11 +158,11 @@ followingsButton.addEventListener("click", () => {
         <div class="flex items-center gap-1">
             <div class="flex items-center gap-2">
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img src="/public/images/profile-1.jpg" class="w-full object-cover h-full" alt="">
+                    <img src="/images/profile-1.jpg" class="w-full object-cover h-full" alt="">
                 </div>
                 <div>
                     <h6 class="">
-                        Lena Mc'Queen
+                        Mehran Khodaei
                     </h6>
                     <p class="text-sm font-Poppins-Light text-gray-600">
                         @the_lena
@@ -367,7 +367,7 @@ const tabsFunc = () => {
                 <article class="profile-feed-card">
                 <div>
                     <header>
-                        <img src="/public/images/profile-1.jpg" alt="profile picture"
+                        <img src="/images/profile-1.jpg" alt="profile picture"
                             class="feed-profile-picture">
                     </header>
                 </div>
@@ -375,7 +375,7 @@ const tabsFunc = () => {
                     <main>
                         <h5 class="feed-username">
                             <span><strong>
-                                    Lena Mc'Queen
+                                    Mehran Khodaei
                                 </strong></span>
                         </h5>
 
@@ -464,7 +464,7 @@ const tabsFunc = () => {
                     <div class="reel-details">
                         <div>
                             <span class="text-sm">
-                            <img src="/public/images/video.svg" class="w-9  "/>
+                            <img src="/images/video.svg" class="w-9  "/>
         
                             </span>
                         </div>
@@ -508,7 +508,7 @@ const tabsFunc = () => {
                 Aww, Nothing to show :(
             </div>
             <div>
-                <img src="/public/images/notfound.png" class="not-found-image" alt="">
+                <img src="/images/notfound.png" class="not-found-image" alt="">
             </div>
             </div>
     `
