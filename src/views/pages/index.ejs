@@ -136,13 +136,17 @@
                   <span> Manage </span>
                 </a>
                 <% if(followed) {%>
-                <button class="unfollow-button font-Poppins-Bold">
-                  Unfollow
-                </button>
+                <form method="post" action="/pages/<%= pageId %>/unfollow">
+                  <button class="unfollow-button font-Poppins-Bold">
+                    Unfollow
+                  </button>
+                </form>
                 <%} else {%>
-                <button class="unfollow-button font-Poppins-Bold">
-                  Follow
-                </button>
+                <form method="post" action="/pages/<%= pageId %>/follow">
+                  <button class="unfollow-button font-Poppins-Bold">
+                    Follow
+                  </button>
+                </form>
                 <%}%>
               </div>
             </div>
