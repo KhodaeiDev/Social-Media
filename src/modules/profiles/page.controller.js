@@ -63,8 +63,33 @@ exports.follow = async (req, res, next) => {
 };
 
 exports.unfollow = async (req, res, next) => {
-  // try {
-  // } catch (err) {
-  //   next(err);
-  // }
+  try {
+    const user = req.user;
+    const { pageId } = req.params;
+
+    const hasPages = await userModel.findOne({ _id: pageId });
+    if (!hasPages) {
+      req.flash("error", "Page not found");
+      return res.redirect(`/pages/${pageId}`);
+    }
+
+    if (user._id.toString() === pageId) {
+      req.flash("error", "You dont unfollow yourself Page");
+      return res.redirect(`/pages/${pageId}`);
+    }
+
+    const alreadyUnfollow = await followModel.findOneAndDelete({
+      follower: user._id,
+      following: pageId,
+    });
+    if (!alreadyUnfollow) {
+      req.flash("error", "You didnt follow This pages");
+      return res.redirect(`/pages/${pageId}`);
+    }
+
+    req.flash("success", "Page UnFollowed successfully");
+    return res.redirect(`/pages/${pageId}`);
+  } catch (err) {
+    next(err);
+  }
 };
