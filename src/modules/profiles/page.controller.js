@@ -7,22 +7,51 @@ exports.showProfileView = async (req, res) => {
   const { pageId } = req.params;
   const hasAccess = await hasAccessToPage(user._id, pageId);
 
+  //? Determine the type Of Follow and Unfollow button
   const follow = await followModel.findOne({
     follower: user._id,
     following: pageId,
   });
 
+  //* Page and user Information
+  const page = await userModel.findOne(
+    { _id: pageId },
+    "username name isVerified"
+  );
+
+  //* Check Access to Page with hasAccessToPage utils
   if (!hasAccess) {
     req.flash("error", "follow page to show content");
     return res.render("pages/index", {
       followed: Boolean(follow),
       pageId,
+      followers: [],
+      followings: [],
+      hasAccess: false,
+      page,
     });
   }
 
+  //?Page Followers
+  let followers = await followModel
+    .find({ following: pageId })
+    .populate("follower", "username name");
+  followers = followers.map((item) => item.follower);
+
+  //?Page Followings
+  let followings = await followModel
+    .find({ follower: pageId })
+    .populate("follower", "username name");
+  followings = followings.map((item) => item.follower);
+
+  //*Page Render
   return res.render("pages/index", {
     followed: Boolean(follow),
     pageId,
+    followers,
+    followings,
+    hasAccess: true,
+    page,
   });
 };
 
