@@ -41,8 +41,8 @@ exports.showProfileView = async (req, res) => {
   //?Page Followings
   let followings = await followModel
     .find({ follower: pageId })
-    .populate("follower", "username name");
-  followings = followings.map((item) => item.follower);
+    .populate("following", "username name");
+  followings = followings.map((item) => item.following);
 
   //*Page Render
   return res.render("pages/index", {
