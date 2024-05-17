@@ -490,8 +490,8 @@
           </button>
         </header>
         <main class="mt-2">
-          <% if (followers.length > 0) { %> <% followers.forEach(follower => {
-          %>
+          <%if(hasAccess){%> <% if (followers.length > 0) { %> <%
+          followers.forEach(follower => { %>
           <article class="following-card">
             <div class="flex items-center gap-1">
               <div class="flex items-center gap-2">
@@ -514,7 +514,13 @@
               <button class="follow-button text-xs">Follow</button>
             </div>
           </article>
+
           <% }) %> <% } else { %>
+
+          <h1 style="text-align: center">No followers</h1>
+
+          <% } %> <%}else { %>
+
           <h1 style="text-align: center">You can't access to followers</h1>
           <% } %>
         </main>
@@ -548,7 +554,8 @@
           </button>
         </header>
         <main class="mt-2">
-          <% if(hasAccess) { %> <% followings.forEach(following => { %>
+          <% if(hasAccess) { %> <%if(followings.length > 0){%>
+          <%followings.forEach(following => { %>
 
           <article class="following-card">
             <div class="flex items-center gap-1">
@@ -572,9 +579,11 @@
               <button class="follow-button text-xs">Follow</button>
             </div>
           </article>
+          <% }) %> <%}else{%>
+          <h1 style="text-align: center">No followings</h1>
 
-          <% }) %> <% } else { %>
-          <h1 style="text-align: center">You can't access to followers</h1>
+          <%}%> <% } else { %>
+          <h1 style="text-align: center">You can't access to followings</h1>
           <% } %>
         </main>
       </section>
