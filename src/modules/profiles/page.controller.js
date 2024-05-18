@@ -1,6 +1,7 @@
 const hasAccessToPage = require("./../../utils/hasAccessToPage");
 const followModel = require("./../../model/follow");
 const userModel = require("./../../model/user");
+const postModel = require("./../../model/post");
 
 exports.showProfileView = async (req, res) => {
   const user = req.user;
@@ -19,6 +20,12 @@ exports.showProfileView = async (req, res) => {
     "username name isVerified"
   );
 
+  //? User Posts
+  const posts = await postModel
+    .find({ user: pageId })
+    .sort({ _id: -1 })
+    .populate("user", "name username");
+
   //* Check Access to Page with hasAccessToPage utils
   if (!hasAccess) {
     req.flash("error", "follow page to show content");
@@ -29,6 +36,7 @@ exports.showProfileView = async (req, res) => {
       followings: [],
       hasAccess: false,
       page,
+      posts: [],
     });
   }
 
@@ -52,6 +60,7 @@ exports.showProfileView = async (req, res) => {
     followings,
     hasAccess: true,
     page,
+    posts,
   });
 };
 
