@@ -7,7 +7,7 @@ const { setHeaders } = require("./middlewares/headers");
 const { errorHandler } = require("./middlewares/errorHandler");
 const authRouter = require("./modules/auth/auth.routes");
 const postRouter = require("./modules/post/post.routes");
-const pageRouter = require("./modules/profiles/page.routes");
+const pageRouter = require("./modules/pages/page.routes");
 require("dotenv").config();
 
 const app = express();
