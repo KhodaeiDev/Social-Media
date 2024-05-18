@@ -28,7 +28,7 @@
             class="w-18 h-18 rounded-full overflow-hidden"
           >
             <img
-              src="/images/profile-8.jpg"
+              src="http://localhost:4002<%=user.profilePicture%>"
               alt="Profile"
               class="object-cover"
             />
@@ -62,6 +62,8 @@
                 <input
                   class="profile-edit-input"
                   id="profile-fullName"
+                  name="name"
+                  value="<%= user.name%>"
                   type="text"
                   placeholder="Mehran Khodaei"
                 />
@@ -75,6 +77,8 @@
                 <input
                   class="profile-edit-input"
                   id="profile-username"
+                  name="username"
+                  value="<%= user.username%>"
                   type="text"
                   placeholder="@khodaei_dev"
                 />
@@ -88,7 +92,9 @@
                 <input
                   class="profile-edit-input"
                   id="profile-email"
-                  type="text"
+                  name="email"
+                  value="<%= user.email%>"
+                  type="email"
                   placeholder="khodaei.dev@gmail.com"
                 />
               </div>
@@ -101,77 +107,25 @@
                 <input
                   class="profile-edit-input"
                   id="profile-password"
-                  type="text"
+                  name="password"
+                  type="password"
                   placeholder="********"
                 />
               </div>
             </article>
 
-            <!-- Birthday Input -->
+            <!-- Profile Input -->
             <article class="edit-profile_input-card">
-              <label for="profile-birthday" class="text-xs">
-                Date of birth
+              <label for="profile-password" class="text-xs">
+                Profile Picture
               </label>
               <div class="profile-edit-input-card">
                 <input
                   class="profile-edit-input"
-                  id="profile-birthday"
-                  type="text"
-                  placeholder="january 6, 2003"
-                />
-              </div>
-            </article>
-
-            <!-- Address Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-address" class="text-xs">
-                Present Address
-              </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-address"
-                  type="text"
-                  placeholder="Iran , Tabriz,.."
-                />
-              </div>
-            </article>
-
-            <!-- City Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-city" class="text-xs"> City </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-city"
-                  type="text"
-                  placeholder="Tabriz"
-                />
-              </div>
-            </article>
-
-            <!-- postal Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-postal" class="text-xs"> Postal code </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-postal"
-                  type="text"
-                  placeholder="751"
-                />
-              </div>
-            </article>
-
-            <!-- country Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-country" class="text-xs"> Country </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-country"
-                  type="text"
-                  placeholder="Iran"
+                  id="profile-password"
+                  name="profilePicture"
+                  type="file"
+                  placeholder="********"
                 />
               </div>
             </article>

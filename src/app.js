@@ -8,6 +8,7 @@ const { errorHandler } = require("./middlewares/errorHandler");
 const authRouter = require("./modules/auth/auth.routes");
 const postRouter = require("./modules/post/post.routes");
 const pageRouter = require("./modules/pages/page.routes");
+const userRouter = require("./modules/user/user.routes");
 require("dotenv").config();
 
 const app = express();
@@ -49,6 +50,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRouter);
 app.use("/pages", pageRouter);
 app.use("/posts", postRouter);
+app.use("/users", userRouter);
 
 // 404 Error handler
 app.use((req, res) => {
