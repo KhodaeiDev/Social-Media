@@ -129,12 +129,16 @@
 
               <!-- Manage -->
               <div class="flex items-center gap-2">
-                <a
-                  href="/ProfileUpdate"
-                  class="min-w-max flex items-center gap-1 manage-button"
-                >
-                  <span> Manage </span>
-                </a>
+                
+                <%if(pageOwner){%>
+                  <a
+                    href="/ProfileUpdate"
+                    class="min-w-max flex items-center gap-1 manage-button"
+                  >
+                    <span> Manage </span>
+                  </a>
+                  <%}%>
+
                 <% if(followed) {%>
                 <form method="post" action="/pages/<%= pageId %>/unfollow">
                   <button class="unfollow-button font-Poppins-Bold">

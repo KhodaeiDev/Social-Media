@@ -8,6 +8,9 @@ exports.showProfileView = async (req, res) => {
   const { pageId } = req.params;
   const hasAccess = await hasAccessToPage(user._id, pageId);
 
+  //? Page owner
+  const pageOwner = String(user._id) === pageId;
+
   //? Determine the type Of Follow and Unfollow button
   const follow = await followModel.findOne({
     follower: user._id,
@@ -61,6 +64,7 @@ exports.showProfileView = async (req, res) => {
     hasAccess: true,
     page,
     posts,
+    pageOwner,
   });
 };
 
