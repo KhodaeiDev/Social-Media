@@ -53,89 +53,116 @@
         </section>
 
         <!-- Edit Profile Content/inputs -->
-        <section id="edit-profile-content">
-          <section id="edit-profile-container">
-            <!-- Name Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-fullName" class="text-xs"> Full name </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-fullName"
-                  name="name"
-                  value="<%= user.name%>"
-                  type="text"
-                  placeholder="Mehran Khodaei"
-                />
-              </div>
-            </article>
+        <form
+          action="/users/edit-profile"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <section id="edit-profile-content">
+            <section id="edit-profile-container">
+              <!-- Name Input -->
+              <article class="edit-profile_input-card">
+                <label for="profile-fullName" class="text-xs">
+                  Full name
+                </label>
+                <div class="profile-edit-input-card">
+                  <input
+                    class="profile-edit-input"
+                    id="profile-fullName"
+                    name="name"
+                    value="<%= user.name%>"
+                    type="text"
+                    placeholder="Mehran Khodaei"
+                  />
+                </div>
+              </article>
 
-            <!-- Username Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-username" class="text-xs"> Username </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-username"
-                  name="username"
-                  value="<%= user.username%>"
-                  type="text"
-                  placeholder="@khodaei_dev"
-                />
-              </div>
-            </article>
+              <!-- Username Input -->
+              <article class="edit-profile_input-card">
+                <label for="profile-username" class="text-xs"> Username </label>
+                <div class="profile-edit-input-card">
+                  <input
+                    class="profile-edit-input"
+                    id="profile-username"
+                    name="username"
+                    value="<%= user.username%>"
+                    type="text"
+                    placeholder="@khodaei_dev"
+                  />
+                </div>
+              </article>
 
-            <!-- Email Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-email" class="text-xs"> Email address </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-email"
-                  name="email"
-                  value="<%= user.email%>"
-                  type="email"
-                  placeholder="khodaei.dev@gmail.com"
-                />
-              </div>
-            </article>
+              <!-- Email Input -->
+              <article class="edit-profile_input-card">
+                <label for="profile-email" class="text-xs">
+                  Email address
+                </label>
+                <div class="profile-edit-input-card">
+                  <input
+                    class="profile-edit-input"
+                    id="profile-email"
+                    name="email"
+                    value="<%= user.email%>"
+                    type="email"
+                    placeholder="khodaei.dev@gmail.com"
+                  />
+                </div>
+              </article>
 
-            <!-- Username Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-password" class="text-xs"> Password </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-password"
-                  name="password"
-                  type="password"
-                  placeholder="********"
-                />
-              </div>
-            </article>
+              <!-- Username Input -->
+              <article class="edit-profile_input-card">
+                <label for="profile-password" class="text-xs"> Password </label>
+                <div class="profile-edit-input-card">
+                  <input
+                    class="profile-edit-input"
+                    id="profile-password"
+                    name="password"
+                    type="password"
+                    placeholder="********"
+                  />
+                </div>
+              </article>
 
-            <!-- Profile Input -->
-            <article class="edit-profile_input-card">
-              <label for="profile-password" class="text-xs">
-                Profile Picture
-              </label>
-              <div class="profile-edit-input-card">
-                <input
-                  class="profile-edit-input"
-                  id="profile-password"
-                  name="profilePicture"
-                  type="file"
-                  placeholder="********"
-                />
-              </div>
-            </article>
+              <!-- Profile Input -->
+              <article class="edit-profile_input-card">
+                <label for="profile-password" class="text-xs">
+                  Profile Picture
+                </label>
+                <div class="profile-edit-input-card">
+                  <input
+                    class="profile-edit-input"
+                    id="profile-password"
+                    name="profile"
+                    type="file"
+                    placeholder="********"
+                  />
+                </div>
+              </article>
+            </section>
+
+            <div class="flex" id="edit-porile-button-card">
+              <button id="edit-profile-button">Save changes</button>
+            </div>
           </section>
-
-          <div class="flex" id="edit-porile-button-card">
-            <button id="edit-profile-button">Save changes</button>
-          </div>
-        </section>
+        </form>
       </main>
     </section>
+
+    <script src="/js/sweetalert.js"></script>
+    <script>
+      if ("<%= locals.messages.error%>") {
+        swal({
+          title: "<%=locals.messages.error%>",
+          icon: "error",
+          button: "Try Again",
+        });
+      } else if ("<%= locals.messages.success%>") {
+        swal({
+          title: "<%=locals.messages.success%>",
+          icon: "success",
+          button: "Hooraaa😍✅",
+        });
+      }
+    </script>
   </body>
 </html>

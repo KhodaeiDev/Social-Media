@@ -47,7 +47,7 @@
               class="w-full h-full bg-transparent border-none"
             >
               <img
-                src="/images/profile-8.jpg"
+                src="http://localhost:4002<%=page.profilePicture%>"
                 class="object-cover"
                 alt="profile cover"
               />
@@ -69,7 +69,7 @@
 
             <!-- Profile Image -->
             <span class="profile-pic-card">
-              <img src="/images/profile-8.jpg" class="profile-pic" alt="" />
+              <img src="http://localhost:4002<%=page.profilePicture%>" class="profile-pic" alt="" />
             </span>
           </header>
           <main class="profile-main">
@@ -186,7 +186,7 @@
                   <div>
                     <header>
                       <img
-                        src="/images/profile-8.jpg"
+                        src="http://localhost:4002<%=post.user.profilePicture%>"
                         alt="profile picture"
                         class="feed-profile-picture"
                       />

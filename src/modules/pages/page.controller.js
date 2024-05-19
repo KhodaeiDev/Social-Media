@@ -20,14 +20,14 @@ exports.showProfileView = async (req, res) => {
   //* Page and user Information
   const page = await userModel.findOne(
     { _id: pageId },
-    "username name isVerified"
+    "username name isVerified profilePicture"
   );
 
   //? User Posts
   const posts = await postModel
     .find({ user: pageId })
     .sort({ _id: -1 })
-    .populate("user", "name username");
+    .populate("user", "name username profilePicture");
 
   //* Check Access to Page with hasAccessToPage utils
   if (!hasAccess) {
