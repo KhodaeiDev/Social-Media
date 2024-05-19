@@ -2,6 +2,7 @@ const hasAccessToPage = require("./../../utils/hasAccessToPage");
 const followModel = require("./../../model/follow");
 const userModel = require("./../../model/user");
 const postModel = require("./../../model/post");
+const likeModel = require("./../../model/like");
 
 exports.showProfileView = async (req, res) => {
   const user = req.user;
@@ -27,7 +28,21 @@ exports.showProfileView = async (req, res) => {
   const posts = await postModel
     .find({ user: pageId })
     .sort({ _id: -1 })
-    .populate("user", "name username profilePicture");
+    .populate("user", "name username profilePicture")
+    .lean();
+
+  //* User Likes
+  const likes = await likeModel.find({ user: user._id });
+
+  posts.forEach((post) => {
+    if (likes.length) {
+      likes.forEach((like) => {
+        if (like.post._id.toString() === post._id.toString()) {
+          post.isLiked = true;
+        }
+      });
+    }
+  });
 
   //* Check Access to Page with hasAccessToPage utils
   if (!hasAccess) {
