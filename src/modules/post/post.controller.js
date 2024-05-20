@@ -5,7 +5,7 @@ const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
 
 exports.showPostUploaderViews = async (req, res) => {
-  return res.render("postUpload/index");
+  return res.render("posts/upload");
 };
 
 exports.createPost = async (req, res, next) => {
@@ -132,6 +132,14 @@ exports.unSave = async (req, res, next) => {
 
     await saveModel.findOneAndDelete({ _id: save._id });
     return res.redirect("back");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.showSaveViews = async (req, res, next) => {
+  try {
+    return res.render("posts/saves");
   } catch (err) {
     next(err);
   }

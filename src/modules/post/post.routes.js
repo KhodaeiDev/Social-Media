@@ -22,4 +22,6 @@ router.route("/dislike").post(authMidlleware, controller.disLikePost);
 router.route("/save").post(authMidlleware, controller.save);
 router.route("/unsave").post(authMidlleware, controller.unSave);
 
+router.route("/saves").get(authMidlleware, controller.showSaveViews);
+
 module.exports = router;
