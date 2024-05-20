@@ -86,3 +86,19 @@ exports.disLikePost = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.save = async (req, res, next) => {
+  try {
+    //
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.unSave = async (req, res, next) => {
+  try {
+    //
+  } catch (err) {
+    next(err);
+  }
+};

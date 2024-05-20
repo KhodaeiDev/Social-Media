@@ -19,4 +19,7 @@ router
 router.route("/like").post(authMidlleware, controller.likePost);
 router.route("/dislike").post(authMidlleware, controller.disLikePost);
 
+router.route("/save").post(authMidlleware, controller.save);
+router.route("/unsave").post(authMidlleware, controller.unSave);
+
 module.exports = router;
