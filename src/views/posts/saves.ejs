@@ -296,15 +296,23 @@
               class="flex items-center gap-3"
             >
               <div>
+                <%if(item.post.user.profilePicture){%>
                 <img
-                  src="/images/profile-1.jpg"
-                  alt="Profile card"
-                  class="w-8 rounded-full"
+                  src="http://localhost:4002<%=item.post.user.profilePicture%>"
+                  class="w-12 h-12 rounded-full"
+                  alt="Peyman Ahmadi"
                 />
+                <%}else{%>
+                <img
+                  src="http://localhost:4002/images/defaulte/default-user.png"
+                  class="object-cover"
+                  alt="profile cover"
+                />
+                <%}%>
               </div>
               <div>
                 <p class="font-Poppins-Medium text-sm twitter-name">
-                  Lena Mc'Queen
+                  <%=item.post.user.name%>
                 </p>
                 <p class="tweet-time">
                   <span>Dubai</span>
