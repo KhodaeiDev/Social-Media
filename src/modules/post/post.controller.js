@@ -1,5 +1,6 @@
 const postModel = require("./../../model/post");
 const likeModel = require("./../../model/like");
+const saveModel = require("./../../model/save");
 const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
 
@@ -89,7 +90,31 @@ exports.disLikePost = async (req, res, next) => {
 
 exports.save = async (req, res, next) => {
   try {
-    //
+    const user = req.user;
+    const { postId } = req.body;
+
+    const post = await postModel.findOne({ _id: postId });
+    if (!post) {
+      req.flash("error", "Post Not Found");
+      return res.redirect("back");
+    }
+
+    const hasAccess = hasAccessTopage(user._id, post.user.toString());
+    if (!hasAccess) {
+      req.flash("error", "Page Private Please Follow First");
+      return res.redirect("back");
+    }
+
+    const isExistSave = await saveModel.findOne({
+      post: postId,
+      user: user._id,
+    });
+    if (isExistSave) {
+      return res.redirect("back");
+    }
+
+    await saveModel.create({ post: postId, user: user._id });
+    return res.redirect("back");
   } catch (err) {
     next(err);
   }
@@ -97,7 +122,16 @@ exports.save = async (req, res, next) => {
 
 exports.unSave = async (req, res, next) => {
   try {
-    //
+    const user = req.user;
+    const { postId } = req.body;
+
+    const save = await saveModel.findOne({ user: user._id, post: postId });
+    if (!save) {
+      return res.redirect("back");
+    }
+
+    await saveModel.findOneAndDelete({ _id: save._id });
+    return res.redirect("back");
   } catch (err) {
     next(err);
   }

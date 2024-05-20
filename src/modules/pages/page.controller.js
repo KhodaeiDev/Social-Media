@@ -3,6 +3,7 @@ const followModel = require("./../../model/follow");
 const userModel = require("./../../model/user");
 const postModel = require("./../../model/post");
 const likeModel = require("./../../model/like");
+const saveModal = require("./../../model/save");
 
 exports.showProfileView = async (req, res) => {
   const user = req.user;
@@ -31,14 +32,27 @@ exports.showProfileView = async (req, res) => {
     .populate("user", "name username profilePicture")
     .lean();
 
-  //* User Likes
+  //* User Likes & Saves
   const likes = await likeModel.find({ user: user._id });
+  const saves = await saveModal.find({ user: user._id });
 
+  //* Is Liked
   posts.forEach((post) => {
     if (likes.length) {
       likes.forEach((like) => {
         if (like.post._id.toString() === post._id.toString()) {
           post.isLiked = true;
+        }
+      });
+    }
+  });
+
+  //* Is Saved
+  posts.forEach((post) => {
+    if (saves.length) {
+      saves.forEach((save) => {
+        if (save.post.toString() === post._id.toString()) {
+          post.isSaved = true;
         }
       });
     }
