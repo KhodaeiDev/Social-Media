@@ -13,7 +13,7 @@
     <header>
       <nav class="w-full flex-between py-5 container">
         <div>
-          <a href="/index.html" class="logo text-xl"> Social Media </a>
+          <a href="/" class="logo text-xl"> Social Media </a>
         </div>
         <div class="relative search-box rounded-xl flex items-center">
           <span class="absolute search-icon top-2-5 left-3">
@@ -39,23 +39,27 @@
           />
         </div>
         <div class="flex gap-6 items-center">
-          <a
-            class="create-button bg-indigo-600"
-            href="/src/Pages/PostUpload/index.html"
-          >
-            Create
-          </a>
+          <a class="create-button bg-indigo-600" href="/posts"> Create </a>
           <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
             <button
               id="profileButton"
               class="w-full h-full bg-transparent border-none"
             >
-              <a href="#"
-                ><img
-                  src="/images/profile-8.jpg"
+              <a href="http://localhost:4002/pages/<%=user._id%>">
+                <%if(user.profilePicture){%>
+                <img
+                  src="http://localhost:4002<%=user.profilePicture%>"
                   class="object-cover"
                   alt="profile cover"
-              /></a>
+                />
+                <%}else{%>
+                <img
+                  src="http://localhost:4002/images/defaulte/default-user.png"
+                  class="object-cover"
+                  alt="profile cover"
+                />
+                <%}%>
+              </a>
             </button>
           </div>
         </div>
@@ -67,23 +71,31 @@
       <!-- Sidebar -->
       <aside id="sidebar">
         <!-- Profile Card -->
-        <a href="#">
+        <a href="http://localhost:4002/pages/<%=user._id%>">
           <article class="profile-card shadow px-4">
             <div>
+              <%if(user.profilePicture){%>
               <img
-                src="/images/profile-8.jpg"
-                class="w-12 h-12 rounded-full"
-                alt="Mehran Khodaei"
+                src="http://localhost:4002<%=user.profilePicture%>"
+                class="object-cover"
+                alt="profile cover"
               />
+              <%}else{%>
+              <img
+                src="http://localhost:4002/images/defaulte/default-user.png"
+                class="object-cover"
+                alt="profile cover"
+              />
+              <%}%>
             </div>
             <div>
               <p
                 class="user-profile-name text-gray-900 font-Poppins-Bold text-sm"
               >
-                Mehran Khodaei
+                <%=user.name%>
               </p>
               <p class="font-Poppins-Light text-xs text-gray-500">
-                @khodaei_dev
+                @<%=user.username%>
               </p>
             </div>
           </article>
@@ -177,7 +189,7 @@
             </a>
           </div>
           <div>
-            <a class="nav-link" href="/src/Pages/Bookmarks/index.html">
+            <a class="nav-link" href="/posts/saves">
               <div class="flex-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

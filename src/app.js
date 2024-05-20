@@ -5,6 +5,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const { setHeaders } = require("./middlewares/headers");
 const { errorHandler } = require("./middlewares/errorHandler");
+const homeRoutes = require("./modules/home/home.routes");
 const authRouter = require("./modules/auth/auth.routes");
 const postRouter = require("./modules/post/post.routes");
 const pageRouter = require("./modules/pages/page.routes");
@@ -44,9 +45,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Routes
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", homeRoutes);
 app.use("/auth", authRouter);
 app.use("/pages", pageRouter);
 app.use("/posts", postRouter);

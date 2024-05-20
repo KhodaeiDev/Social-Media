@@ -3,7 +3,7 @@ module.exports = async (req, res, next) => {
     const isVerify = req.user.isVerified;
     if (!isVerify) {
       req.flash("verifyMessage", "You need to verify your account");
-      return res.render("postUpload/index");
+      return res.render("posts/upload");
     }
     next();
   } catch (err) {

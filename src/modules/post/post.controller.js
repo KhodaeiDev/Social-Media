@@ -3,6 +3,7 @@ const likeModel = require("./../../model/like");
 const saveModel = require("./../../model/save");
 const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
+const { getUserInfo } = require("../../utils/helper");
 
 exports.showPostUploaderViews = async (req, res) => {
   return res.render("posts/upload");
@@ -16,7 +17,7 @@ exports.createPost = async (req, res, next) => {
 
     if (!req.file) {
       req.flash("error", "media is a required");
-      return res.render("postUpload/index");
+      return res.render("posts/upload");
     }
 
     await postCreateValidator.validate({ description }, { abortEarly: false });
@@ -139,7 +140,31 @@ exports.unSave = async (req, res, next) => {
 
 exports.showSaveViews = async (req, res, next) => {
   try {
-    return res.render("posts/saves");
+    const user = req.user;
+
+    const saves = await saveModel
+      .find({ user: user._id })
+      .populate("post")
+      .populate("user")
+      .sort({ _id: -1 });
+    const likes = await likeModel.find({ user: user._id }).populate("post");
+
+    saves.forEach((item) => {
+      if (likes.length) {
+        likes.forEach((like) => {
+          if (like.post._id.toString() === item.post._id.toString()) {
+            item.post.isLiked = true;
+          }
+        });
+      }
+    });
+
+    const userInfo = await getUserInfo(user._id);
+
+    return res.render("posts/saves", {
+      saves,
+      user: userInfo,
+    });
   } catch (err) {
     next(err);
   }
