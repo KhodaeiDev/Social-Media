@@ -4,6 +4,8 @@ const saveModel = require("./../../model/save");
 const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
 const { getUserInfo } = require("../../utils/helper");
+const path = require("path");
+const fs = require("fs");
 
 exports.showPostUploaderViews = async (req, res) => {
   return res.render("posts/upload");
@@ -170,6 +172,47 @@ exports.showSaveViews = async (req, res, next) => {
       saves,
       user: userInfo,
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.removePost = async (req, res, next) => {
+  try {
+    const user = req.user;
+    const { postId } = req.params;
+
+    const post = await postModel.findOne({ _id: postId });
+    if (!post || post.user.toString() !== user._id.toString()) {
+      req.flash("error", "you cant remove this Post");
+      return res.redirect("back");
+    }
+
+    const mediaPath = path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "public",
+      "images",
+      "posts",
+      post.media.filename
+    );
+
+    fs.unlinkSync(mediaPath, (err) => {
+      if (err) {
+        next(err);
+      }
+    });
+
+    const like = await likeModel.deleteMany({ _id: postId });
+    const save = await saveModel.deleteMany({ _id: postId });
+    // const comment = await commentModel.deleteMany({ _id: postId });
+
+    const remove = await postModel.findByIdAndDelete(postId);
+
+    req.flash("success", "Post Removed Successfully");
+    return res.redirect("back");
   } catch (err) {
     next(err);
   }

@@ -246,6 +246,10 @@ main {
   margin: 12px auto;
 }
 
+.feed-card:first-child {
+  margin-top: 0;
+}
+
 .tweet-time {
   font-size: 10px;
   color: gray;
@@ -372,7 +376,7 @@ main {
   overflow: hidden;
   border-radius: 6px;
   width: 100%;
-  height: 100%;
+  max-height: 520px;
 }
 
 .reels img {
@@ -819,6 +823,39 @@ textarea {
   font-size: 15px;
 }
 
+.button.success {
+  background: #3f97b0;
+  color: white;
+  max-width: max-content;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all ease 200ms;
+}
+
+.button.success:hover {
+  background: #499cb3;
+}
+
+.button.error {
+  background: #f11111;
+  color: white;
+  max-width: max-content;
+  padding: 7px 16px 6px;
+  border-radius: 4px;
+  transition: all ease 200ms;
+}
+
+.comments-modal {
+  min-width: 800px !important;
+  /* max-height: 80%; */
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.button.error:hover {
+  background: #ff3737;
+}
+
 .alert.success {
   background: #eafaf3;
   color: #346f80;
@@ -851,7 +888,106 @@ textarea {
   border-radius: 4px;
 }
 
-.swal-footer {
+.dropdown {
+  position: absolute;
+  background: white;
+  width: 140px;
+  right: 100%;
+  padding: 4px;
+  border-radius: 6px;
+  animation-duration: 300ms;
+  transition: all ease 300ms;
+  border: 1px solid rgba(128, 128, 128, 0.161);
+  opacity: 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.208);
+  visibility: hidden;
+}
+.modal-screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.485);
   display: flex;
   justify-content: center;
+  align-items: center;
+  transition: all ease 300ms;
+}
+
+#modal-card {
+  width: 380px;
+  padding: 21px 12px;
+  background: white;
+  border-radius: 12px;
+  margin: 120px auto;
+}
+
+#modal-header {
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.168);
+}
+
+.visible {
+  opacity: 100;
+  visibility: visible;
+}
+
+.remove-button {
+  color: red;
+  display: flex;
+  align-items: center;
+  transition: all ease 200ms;
+  gap: 6px;
+  padding: 6px;
+}
+
+.remove-button:hover {
+  background: rgba(255, 0, 0, 0.074);
+  border-radius: 4px;
+}
+
+.remove-button span {
+  font-size: 14px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+textarea {
+  border: 1px solid rgba(128, 128, 128, 0.161) !important;
+  height: 160px !important;
+}
+
+textarea::placeholder {
+  font-weight: 100 !important;
+  color: rgb(181, 181, 181);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border: 4px solid red !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #d5d5d5;
+  width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  width: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -24,4 +24,6 @@ router.route("/unsave").post(authMidlleware, controller.unSave);
 
 router.route("/saves").get(authMidlleware, controller.showSaveViews);
 
+router.route("/:postId/remove").post(authMidlleware, controller.removePost);
+
 module.exports = router;
