@@ -1,6 +1,7 @@
 const postModel = require("./../../model/post");
 const likeModel = require("./../../model/like");
 const saveModel = require("./../../model/save");
+const commentModel = require("./../../model/comment");
 const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
 const { getUserInfo } = require("../../utils/helper");
@@ -212,6 +213,30 @@ exports.removePost = async (req, res, next) => {
     const remove = await postModel.findByIdAndDelete(postId);
 
     req.flash("success", "Post Removed Successfully");
+    return res.redirect("back");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.newComment = async (req, res, next) => {
+  try {
+    const user = req.user;
+    const { content, postId } = req.body;
+
+    const post = await postModel.findOne({ _id: postId });
+    if (!post) {
+      req.flash("error", "Post Not found");
+      return res.redirect("back");
+    }
+
+    commentModel.create({
+      content,
+      post: postId,
+      user: user._id,
+    });
+
+    req.flash("success", "The comment registered");
     return res.redirect("back");
   } catch (err) {
     next(err);

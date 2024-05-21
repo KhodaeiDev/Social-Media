@@ -291,7 +291,7 @@
                               </form>
                               <%}%>
 
-                          <button class="max-w-max">
+                          <button onclick="commentIconClickHandler('<%= post._id %>')" class="comment-icon max-w-max">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -795,7 +795,7 @@
     </section>
 
     <!-- Modal -->
-    <section id="comments-modal" class="modal-screen comments-modal">
+    <section id="comments-modal" class="comments-modal modal-screen ">
       <section id="modal-card">
         <div class="overflow-y-visible" id="comments_modal">
           <header class="w-full border-b pb-4 flex-center text-center">
@@ -808,7 +808,7 @@
               <p class="text-sm text-gray-700">
                 Add a comment:
               </p>
-              <form id="comment-form">
+              <form id="comment-form" action="/posts/new-comment" method="post">
                 <div class="mt-2">
                   <textarea name="content" class="w-full  bg-gray-100 p-5 rounded-lg font-light" placeholder="Write something to share ..."></textarea>
                 </div>
@@ -829,12 +829,12 @@
           <div class="border bg-gray-100 p-5 my-3 rounded-md shadow-sm">
             <div class="flex items-center gap-2 mb-1">
               <img
-                src="http://localhost:4001/images/profiles/default-user.png"
+                src="http://localhost:4002/images/defaulte/default-user.png"
                 class="w-9 rounded-full"
                 alt="Profile Image"
               />
               <div>
-                <span class="text-sm text-gray-600"> Amin Saeedi </span>
+                <span class="text-sm text-gray-600"> Mehran Khodaei </span>
                 <p class="text-xs text-gray-500">20 April 2024</p>
               </div>
             </div>
@@ -913,7 +913,6 @@
       const commentsOverlay = document.querySelector('.modal-screen')
 
 
-      console.log(followersSpan);
       followersSpan.addEventListener("click", () => {
         const followersModal = document.querySelector(".modal-screen");
         const followerModalCloseBtn = document.querySelector(".close-button");
@@ -949,18 +948,19 @@
       });
       
      
-      function commentIconClickHandler (postID) {
+      function commentIconClickHandler (postId) {
         const modal = document.querySelector('#comments-modal')
         const commentForm = document.querySelector('#comment-form')
         const commentFormInputs = commentForm.querySelectorAll('input')
         
-        modal.classList.add('visible')
+        modal.classList.add("visible")
 
+       
         commentFormInputs.forEach(input => input.remove())
 
         commentForm.insertAdjacentHTML('afterbegin',
           `
-            <input type="hidden" name="postID" value=${postID} />
+            <input type="hidden" name="postId" value=${postId} />
           `
         )
       };
