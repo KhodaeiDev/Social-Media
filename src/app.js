@@ -10,6 +10,7 @@ const authRouter = require("./modules/auth/auth.routes");
 const postRouter = require("./modules/post/post.routes");
 const pageRouter = require("./modules/pages/page.routes");
 const userRouter = require("./modules/user/user.routes");
+const swaggerApiDoc = require("./modules/api-document/swagger.routes");
 require("dotenv").config();
 
 const app = express();
@@ -46,6 +47,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.use("/", homeRoutes);
+app.use("/api-doc", swaggerApiDoc);
 app.use("/auth", authRouter);
 app.use("/pages", pageRouter);
 app.use("/posts", postRouter);

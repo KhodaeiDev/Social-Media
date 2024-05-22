@@ -1,0 +1,132 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "< Social Media App ❤️✅>",
+    "description": "Test description",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "shemes": "bearer",
+        "in": "header",
+        "description": "User Token Form authorization : **Bearer[user_token]**"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Apis For Auth User (Login and Register)"
+    },
+    {
+      "name": "Pages",
+      "description": "Apis For User Account and pages"
+    },
+    {
+      "name": "posts",
+      "description": "Apis about Users Posts (Upload , Remove , like , Save , ...)"
+    },
+    {
+      "name": "Profile",
+      "description": "Apis for Users Profiles (Edit personal information)"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User Register ",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Mehran Khodaei",
+                  "username": "Khodaei-dev",
+                  "email": "khodaei-dev@gmail.com",
+                  "password": "password1010"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully Registered"
+          },
+          "400": {
+            "description": "Request Body invalid"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Show view For User Register ",
+        "responses": {
+          "200": {
+            "description": "Successfully Ger Page"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User Login ",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "khodaei-dev@gmail.com",
+                  "password": "password1010"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully Logined"
+          },
+          "401": {
+            "description": "User not Found (Invalid information)"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Show view For User Register ",
+        "responses": {
+          "200": {
+            "description": "Successfully Get Page"
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/follow": {
+      "post": {
+        "tags": ["Pages"],
+        "summary": "Follow Pages",
+        "parameters": [
+          {
+            "name": "pageId",
+            "in": "path",
+            "required": "true",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully response"
+          }
+        }
+      }
+    }
+  }
+}
