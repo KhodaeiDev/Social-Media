@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const { errorResponse, successResponse } = require("../../utils/responses");
 const userModel = require("./../../model/user");
 const refreshTokenModel = require("./../../model/RefreshToken");
 const { registerValidation, loginValidation } = require("./auth.validator");
@@ -50,7 +49,7 @@ exports.register = async (req, res, next) => {
     });
 
     req.flash("success", "You Registered successfully");
-    return res.redirect("/auth/register");
+    return res.redirect("/auth/login");
   } catch (err) {
     return next(err);
   }
@@ -78,6 +77,8 @@ exports.login = async (req, res, next) => {
       return res.redirect("/auth/login");
     }
 
+    const pageId = user._id;
+
     const accessToken = generateAccessToken(user);
     const refreshToken = await refreshTokenModel.createToken(user);
 
@@ -90,8 +91,43 @@ exports.login = async (req, res, next) => {
       httpOnly: true,
     });
     req.flash("success", "Your Logined Successfully");
-    return res.redirect("/auth/login");
+    return res.redirect(`/pages/${pageId}`);
   } catch (err) {
     return next(err);
+  }
+};
+
+exports.refreshToken = async (req, res, next) => {
+  try {
+    const { refreshToken } = req.body;
+
+    const userId = await refreshTokenModel.verifyToken(refreshToken);
+    if (!userId) {
+      req.flash("error", "Please Login Again");
+      return res.redirect("/auth/login");
+    }
+
+    await refreshTokenModel.findOneAndDelete({ token: refreshToken });
+
+    const user = await userModel.findOne({ _id: userId });
+    if (!user) {
+      req.flash("error", "Please Login Again");
+      return res.redirect("/auth/login");
+    }
+    const accessToken = generateAccessToken(user);
+    const newRefreshToken = refreshTokenModel.createToken(user);
+
+    res.cookie("access-token", accessToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
+    res.cookie("refresh-token", newRefreshToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
+
+    return res.redirect("back");
+  } catch (err) {
+    next(err);
   }
 };

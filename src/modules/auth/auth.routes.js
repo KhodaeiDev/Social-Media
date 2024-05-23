@@ -9,4 +9,6 @@ router
   .post(controller.register);
 router.route("/login").get(controller.showLoginViews).post(controller.login);
 
+router.route("/refresh", controller.refreshToken);
+
 module.exports = router;
