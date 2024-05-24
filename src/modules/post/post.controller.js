@@ -224,6 +224,11 @@ exports.newComment = async (req, res, next) => {
     const user = req.user;
     const { content, postId } = req.body;
 
+    if (!content) {
+      req.flash("error", "Comment text cannot be empty");
+      return res.redirect("back");
+    }
+
     const post = await postModel.findOne({ _id: postId });
     if (!post) {
       req.flash("error", "Post Not found");
