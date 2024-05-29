@@ -54,12 +54,14 @@ app.use("/posts", postRouter);
 app.use("/users", userRouter);
 
 // 404 Error handler
-app.use((req, res) => {
-  console.log("this is Path Not Found =>", req.path);
-  res.status(404).json({ message: "Page Not found" });
+app.use((req, res, next) => {
+  const err = new Error(`${req.originalUrl} Routes not Found`);
+  err.statusCode = 404;
+  err.status = "Faild";
+  next(err);
 });
 
 // todo
-// app.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;

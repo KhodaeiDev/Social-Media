@@ -22,7 +22,7 @@ exports.register = async (req, res, next) => {
 
     await registerValidation.validate(
       { name, username, email, password },
-      { abortEarly: false }
+      { abortEarly: true }
     );
 
     const isUserExist = await userModel
@@ -71,7 +71,7 @@ exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    await loginValidation.validate({ email, password }, { abortEarly: false });
+    await loginValidation.validate({ email, password }, { abortEarly: true });
 
     const user = await userModel.findOne({ email });
     if (!user) {

@@ -25,10 +25,7 @@ exports.loginValidation = yup.object({
     .string()
     .email("must be a Valid Email")
     .required("Email is Required Field"),
-  password: yup
-    .string()
-    .min(8, "password must be at least 8 characters long")
-    .required("Password is Required Field"),
+  password: yup.string().required("Password is Required Field"),
 });
 
 exports.forgetPasswordValidation = yup.object({
