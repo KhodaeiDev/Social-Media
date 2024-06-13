@@ -4,10 +4,12 @@ const userModel = require("./../../model/user");
 const postModel = require("./../../model/post");
 const likeModel = require("./../../model/like");
 const saveModal = require("./../../model/save");
+const commentModel = require("./../../model/comment");
 
 exports.showProfileView = async (req, res) => {
   const user = req.user;
   const { pageId } = req.params;
+
   const hasAccess = await hasAccessToPage(user._id, pageId);
 
   //? Page owner
@@ -58,6 +60,14 @@ exports.showProfileView = async (req, res) => {
     }
   });
 
+  //* comment
+
+  const comments = await commentModel
+    .find({})
+    // .sort({ _id: -1 })
+    // .populate("user", "name username")
+    .lean();
+
   //* Check Access to Page with hasAccessToPage utils
   if (!hasAccess) {
     req.flash("error", "follow page to show content");
@@ -94,6 +104,7 @@ exports.showProfileView = async (req, res) => {
     page,
     posts,
     pageOwner,
+    comments,
   });
 };
 
