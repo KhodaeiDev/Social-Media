@@ -1,6 +1,6 @@
 # Social Media v1.00
 
-### A simple social media application with users, posts, likes and comments - developed using Ejs template engine, Node, Express and MongoDB. 
+### A social media application Like instagram with users, posts, likes and comments - developed using Ejs template engine, NodeJs, ExpressJs and MongoDB. 
 
 ## Development tools
 
