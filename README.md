@@ -7,7 +7,7 @@
 <div align='center'>
   
 ### Home Page ✌️❤️
-[![Home Page](https://i.postimg.cc/3wd8323R/Screenshot-2024-07-27-130400.png)](https://postimg.cc/bGfcTDDc)
+[![Home Page](https://i.postimg.cc/xC0VJxrp/Screenshot-2024-07-27-134805.png)](https://postimg.cc/cK5bPcLf)
 <br>
 <br>
 ### Personal Page ✌️❤️
