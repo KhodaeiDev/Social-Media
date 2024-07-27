@@ -1,13 +1,21 @@
 # Social Media v1.00
 
-### A simple social media application with users, posts, likes and comments - developed using Ejs template engine, Node, Express and MongoDB. 
+### A social media application Like instagram with users, posts, likes and comments - developed using Ejs template engine, NodeJs, ExpressJs and MongoDB. 
+
+## Development tools
+
+![](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
+![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![](https://badges.aleen42.com/src/ejs.svg)
 
 ## Project views
 <br>
 <div align='center'>
   
 ### Home Page ✌️❤️
-[![Home Page](https://i.postimg.cc/3wd8323R/Screenshot-2024-07-27-130400.png)](https://postimg.cc/bGfcTDDc)
+[![Home Page](https://i.postimg.cc/xC0VJxrp/Screenshot-2024-07-27-134805.png)](https://postimg.cc/cK5bPcLf)
 <br>
 <br>
 ### Personal Page ✌️❤️
@@ -37,13 +45,10 @@ To get started, follow these steps:
 
 ---
 
-**Feel free to use this template for your own portfolio and showcase your work! If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request. Happy coding! 😀❤️
-**
+<h3>Feel free to use this template for your own portfolio and showcase your work! If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request. Happy coding! 😀❤️ </h3>
 
-## Development tools
+---
 
-![](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
-![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![](https://badges.aleen42.com/src/ejs.svg)
+<div align='center'>
+  <h2> Developed By ❤️ With Mehran Khodaei </h2>
+</div>
