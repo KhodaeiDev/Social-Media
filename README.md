@@ -41,7 +41,7 @@ To get started, follow these steps:
 2. Navigate to the project folder: `cd social-media`
 3. Install dependencies: `npm install`
 4. Run the development server: `npm run dev`
-5. Open your browser and visit [http://localhost:3000](http://localhost:4002)
+5. Open your browser and visit [http://localhost:4002](http://localhost:4002)
 
 ---
 
