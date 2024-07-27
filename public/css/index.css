@@ -192,10 +192,6 @@ span strong {
   align-items: center;
 }
 
-a:visited {
-  color: #212121;
-}
-
 .inline-block {
   display: inline-block;
 }
