@@ -661,7 +661,9 @@ input::placeholder {
 }
 
 #post-upload-wrapper {
-  height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -749,9 +751,9 @@ input::placeholder {
 
 textarea {
   resize: none;
-  padding: 12px;
+  padding: 9px;
   font-family: "Poppins-Medium";
-  font-size: 16px;
+  font-size: 12px;
   border: 1px solid #4a4abe55;
   outline: none;
 }
@@ -961,7 +963,7 @@ textarea {
 
 textarea {
   border: 1px solid rgba(128, 128, 128, 0.161) !important;
-  height: 160px !important;
+  height: 100px !important;
 }
 
 textarea::placeholder {

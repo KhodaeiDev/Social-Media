@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social App</title>
+    <title>Social Media | Create Post</title>
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/profile.css" />
     <link rel="stylesheet" href="/css/styles.css" />
@@ -14,44 +14,23 @@
     <header>
       <nav class="w-full flex-between py-5 container">
         <div>
-          <a class="logo text-xl" href="/"> nokoSocial </a>
+          <a class="logo text-xl" href="/pages/<%=user._id%>"> Social Media </a>
         </div>
-        <div class="relative search-box rounded-xl flex items-center">
-          <span class="absolute search-icon top-2-5 left-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-4 h-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </span>
-          <input
-            placeholder="Search in Neko Social .."
-            type="text"
-            class="bg-transparent px-8 w-full h-full"
-          />
-        </div>
+
         <div class="flex gap-6 items-center">
-          <a class="create-button bg-indigo-600" href="#"> Create </a>
+          <a class="create-button bg-indigo-600" href="/posts"> Create </a>
           <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
-            <button
+            <a
               id="profileButton"
               class="w-full h-full bg-transparent border-none"
+              href="/pages/<%=user._id%>"
             >
               <img
-                src="/images/profile-8.jpg"
+                src="<%=user.profilePicture%>"
                 class="object-cover"
                 alt="profile cover"
               />
-            </button>
+            </a>
           </div>
         </div>
       </nav>

@@ -5,7 +5,6 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const { setHeaders } = require("./middlewares/headers");
 const { errorHandler } = require("./middlewares/errorHandler");
-const homeRoutes = require("./modules/home/home.routes");
 const authRouter = require("./modules/auth/auth.routes");
 const postRouter = require("./modules/post/post.routes");
 const pageRouter = require("./modules/pages/page.routes");
@@ -37,7 +36,7 @@ app.use(setHeaders);
 
 // static Folder
 app.use("/css", express.static(path.join(__dirname, "./../public/css")));
-app.use("/js", express.static(path.join(__dirname, "./Functions")));
+app.use("/js", express.static(path.join(__dirname, "./../public/js")));
 app.use("/fonts", express.static(path.join(__dirname, "./../public/fonts")));
 app.use("/images", express.static(path.join(__dirname, "./../public/images")));
 
@@ -46,7 +45,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Routes
-app.use("/", homeRoutes);
 app.use("/api-doc", swaggerApiDoc);
 app.use("/auth", authRouter);
 app.use("/pages", pageRouter);

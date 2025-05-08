@@ -4,12 +4,13 @@ const saveModel = require("./../../model/save");
 const commentModel = require("./../../model/comment");
 const { postCreateValidator } = require("./post.validator");
 const hasAccessTopage = require("./../../utils/hasAccessToPage");
-const { getUserInfo } = require("../../utils/helper");
 const path = require("path");
 const fs = require("fs");
 
 exports.showPostUploaderViews = async (req, res) => {
-  return res.render("posts/upload");
+  const user = req.user;
+
+  return res.render("posts/upload", { user });
 };
 
 exports.createPost = async (req, res, next) => {
@@ -167,11 +168,9 @@ exports.showSaveViews = async (req, res, next) => {
       }
     });
 
-    const userInfo = await getUserInfo(user._id);
-
     return res.render("posts/saves", {
       saves,
-      user: userInfo,
+      user,
     });
   } catch (err) {
     next(err);

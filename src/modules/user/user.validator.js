@@ -15,4 +15,9 @@ exports.prifileUpdateValidator = yup.object({
     .string()
     .email("must be a Valid Email")
     .required("Email is Required Field"),
+
+  biography: yup
+    .string()
+    .max(255, "biography must be 255 char")
+    .required("Email is Required Field"),
 });

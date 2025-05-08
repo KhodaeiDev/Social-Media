@@ -3,7 +3,6 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const userModel = require("./../../model/user");
 const resetPasswordModel = require("./../../model/resetPassword");
-const refreshTokenModel = require("./../../model/RefreshToken");
 const {
   registerValidation,
   loginValidation,
@@ -45,14 +44,9 @@ exports.register = async (req, res, next) => {
     });
 
     const accessToken = generateAccessToken(user);
-    const refreshToken = await refreshTokenModel.createToken(user);
 
     res.cookie("access-token", accessToken, {
-      maxAge: 900000,
-      httpOnly: true,
-    });
-    res.cookie("refresh-token", refreshToken, {
-      maxAge: 900000,
+      maxAge: 3600000,
       httpOnly: true,
     });
 
@@ -88,55 +82,16 @@ exports.login = async (req, res, next) => {
     const pageId = user._id;
 
     const accessToken = generateAccessToken(user);
-    const refreshToken = await refreshTokenModel.createToken(user);
 
     res.cookie("access-token", accessToken, {
-      maxAge: 900000,
+      maxAge: 3600000,
       httpOnly: true,
     });
-    res.cookie("refresh-token", refreshToken, {
-      maxAge: 900000,
-      httpOnly: true,
-    });
+
     req.flash("success", "Your Logined Successfully");
     return res.redirect(`/pages/${pageId}`);
   } catch (err) {
     return next(err);
-  }
-};
-
-exports.refreshToken = async (req, res, next) => {
-  try {
-    const { refreshToken } = req.body;
-
-    const userId = await refreshTokenModel.verifyToken(refreshToken);
-    if (!userId) {
-      req.flash("error", "Please Login Again");
-      return res.redirect("/auth/login");
-    }
-
-    await refreshTokenModel.findOneAndDelete({ token: refreshToken });
-
-    const user = await userModel.findOne({ _id: userId });
-    if (!user) {
-      req.flash("error", "Please Login Again");
-      return res.redirect("/auth/login");
-    }
-    const accessToken = generateAccessToken(user);
-    const newRefreshToken = refreshTokenModel.createToken(user);
-
-    res.cookie("access-token", accessToken, {
-      maxAge: 900000,
-      httpOnly: true,
-    });
-    res.cookie("refresh-token", newRefreshToken, {
-      maxAge: 900000,
-      httpOnly: true,
-    });
-
-    return res.redirect("back");
-  } catch (err) {
-    next(err);
   }
 };
 

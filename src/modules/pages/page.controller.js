@@ -22,10 +22,7 @@ exports.showProfileView = async (req, res) => {
   });
 
   //* Page and user Information
-  const page = await userModel.findOne(
-    { _id: pageId },
-    "username name isVerified profilePicture"
-  );
+  const page = await userModel.findOne({ _id: pageId });
 
   //? User Posts
   const posts = await postModel
@@ -72,6 +69,7 @@ exports.showProfileView = async (req, res) => {
   if (!hasAccess) {
     req.flash("error", "follow page to show content");
     return res.render("pages/index", {
+      user,
       followed: Boolean(follow),
       pageId,
       followers: [],
@@ -85,17 +83,18 @@ exports.showProfileView = async (req, res) => {
   //?Page Followers
   let followers = await followModel
     .find({ following: pageId })
-    .populate("follower", "username name");
+    .populate("follower", "username name _id profilePicture");
   followers = followers.map((item) => item.follower);
 
   //?Page Followings
   let followings = await followModel
     .find({ follower: pageId })
-    .populate("following", "username name");
+    .populate("following", "username name _id profilePicture");
   followings = followings.map((item) => item.following);
 
   //*Page Render
   return res.render("pages/index", {
+    user,
     followed: Boolean(follow),
     pageId,
     followers,

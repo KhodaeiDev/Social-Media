@@ -12,7 +12,8 @@ exports.showUserProfileEdit = async (req, res) => {
 exports.updatePrpfilePicture = async (req, res, next) => {
   try {
     const userId = req.user._id;
-    const { name, username, email, password } = req.body;
+    let { name, username, email, biography } = req.body;
+    biography = biography.trim();
 
     //*validator
     const bodyValidate = await prifileUpdateValidator.validate(
@@ -20,23 +21,10 @@ exports.updatePrpfilePicture = async (req, res, next) => {
         name,
         username,
         email,
-        password,
+        biography,
       },
       { abortEarly: false }
     );
-
-    if (!password) {
-      req.flash("error", "Please Enter Your password");
-      return res.redirect("/users/edit-profile");
-    }
-    const user = await userModel.findOne({ _id: userId });
-
-    const confirmPassword = await bcrypt.compare(password, user.password);
-
-    if (!confirmPassword) {
-      req.flash("error", "Password is Incorrect");
-      return res.redirect("/users/edit-profile");
-    }
 
     if (req.file) {
       const { filename } = req.file;
@@ -49,12 +37,13 @@ exports.updatePrpfilePicture = async (req, res, next) => {
           name,
           email,
           username,
+          biography,
         },
         { new: true }
       );
 
       req.flash("success", "Profile Picture Updated Successfully");
-      return res.redirect("/users/edit-profile");
+      return res.render(`page/${user._id}`);
     }
     await userModel.findOneAndUpdate(
       { _id: userId },
@@ -62,6 +51,7 @@ exports.updatePrpfilePicture = async (req, res, next) => {
         name,
         email,
         username,
+        biography,
       },
       { new: true }
     );

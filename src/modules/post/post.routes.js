@@ -1,7 +1,7 @@
 const express = require("express");
 const controller = require("./post.controller");
 const authMidlleware = require("./../../middlewares/auth");
-const accountVerify = require("./../../middlewares/accountVerify");
+
 const { multerStorage } = require("../../middlewares/uploader");
 
 const upload = multerStorage(
@@ -13,7 +13,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(authMidlleware, accountVerify, controller.showPostUploaderViews)
+  .get(authMidlleware, controller.showPostUploaderViews)
   .post(authMidlleware, upload.single("media"), controller.createPost);
 
 router.route("/like").post(authMidlleware, controller.likePost);
