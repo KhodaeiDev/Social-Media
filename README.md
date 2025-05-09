@@ -1,6 +1,9 @@
 # Social Media v1.00
 
-### A social media application Like instagram with users, posts, likes and comments - developed using Ejs template engine, NodeJs, ExpressJs and MongoDB. 
+### This social media project, similar to Instagram, has been developed using the MVC architecture. Key features include user account creation, adding posts, editing profile information, liking posts, and following other users.
+
+**Note:** This is an early version of the project and is not yet complete.  
+New features are currently being developed and added.
 
 ## Development tools
 
@@ -11,15 +14,24 @@
 ![](https://badges.aleen42.com/src/ejs.svg)
 
 ## Project views
+
 <br>
 <div align='center'>
   
 ### Home Page ✌️❤️
-[![Home Page](https://i.postimg.cc/xC0VJxrp/Screenshot-2024-07-27-134805.png)](https://postimg.cc/cK5bPcLf)
+![Home Page](./public/images/cover/Screenshot-HomePage.png)
+**Developing**
 <br>
 <br>
+
 ### Personal Page ✌️❤️
-[![Personal Page](https://i.postimg.cc/sDY1LP2C/Screenshot-2024-07-27-130142.png)](https://postimg.cc/2V5zbZv0)
+
+![Personal Page](./public/images/cover/Screenshot-profile.png)
+
+### Upload Post ✌️❤️
+
+![Personal Page](./public/images/cover/Screenshot-postUpload.png)
+
 </div>
 
 ## Features
@@ -31,12 +43,12 @@
 - With the ability to save posts in bookmark
 - As well as Account recovery and password change in case of forgetting it
 
-
 ## Installation
 
 To get started, follow these steps:
 
 **Make sure MongoDB is running on your system**
+
 1. Clone the repository: `git clone https://github.com/khodaeidev/social-media.git`
 2. Navigate to the project folder: `cd social-media`
 3. Install dependencies: `npm install`
