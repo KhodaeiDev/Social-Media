@@ -74,6 +74,8 @@ exports.showProfileView = async (req, res) => {
     .populate("following", "username name _id profilePicture");
   followings = followings.map((item) => item.following);
 
+  const users = await userModel.find();
+
   //*Page Render
   return res.render("pages/index", {
     user,
@@ -86,6 +88,7 @@ exports.showProfileView = async (req, res) => {
     posts,
     pageOwner,
     comments,
+    users,
   });
 };
 

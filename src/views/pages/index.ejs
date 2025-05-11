@@ -16,6 +16,7 @@
         <div>
           <a href="#" onclick="location.reload()" class="logo text-xl"> Social Media </a>
         </div>
+
         <div class="relative search-box rounded-xl flex items-center">
           <span class="absolute search-icon top-2-5 left-3">
             <svg
@@ -34,11 +35,43 @@
             </svg>
           </span>
           <input
+          id="searchInput"
             placeholder="Search in Neko Social .."
             type="text"
             class="bg-transparent px-8 w-full h-full"
           />
+<!-- مودال -->
+ <!-- search Modal -->
+  <div
+    id="searchModall"
+    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[90%] max-w-md p-6 rounded-xl shadow-lg border border-gray-300 z-[9999] hidden transition-all duration-300"
+  >
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-semibold text-gray-700">نتایج جستجو:</h3>
+      <span id="closeModal" class="cursor-pointer text-xl hover:text-red-500">✖️</span>
+    </div>
+    <ul id="results" class="space-y-2 text-sm text-gray-600">
+      <!-- <li class="following-card flex items-center justify-between p-3 border-b">
+        <div class="flex items-center gap-2">
+          <div class="w-12 h-12 rounded-full overflow-hidden">
+            <img src="/images/defaulte/default-user.png" class="w-full h-full object-cover" alt="Profile" />
+          </div>
+          <div>
+            <h6 class="text-base font-semibold">کاربر تستی</h6>
+            <p class="text-sm text-gray-600">@testuser</p>
+          </div>
         </div>
+        <form method="get" action="/pages/123">
+          <button class="follow-button text-xs px-3 py-1 bg-blue-500 text-white rounded-md">نمایش پروفایل</button>
+        </form>
+      </li> -->
+       
+    </ul>
+  </div>
+
+        </div>
+
+
         <div class="flex gap-6 items-center">
           <a class="create-button bg-indigo-600" href="/posts"> Create Post</a>
           <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
@@ -346,11 +379,7 @@
                              <%= post.description %> 
                           </p>
                         </div>
-                        <div class="mt-1">
-                          <button class="text-xs max-w-max text-gray-500">
-                            View all 294 comments ..
-                          </button>
-                        </div>
+                        
                       </div>
                     </footer>
                   </div>
@@ -727,59 +756,127 @@
         });
       }
 
-    const followersSpan = document.querySelector(".followers");
-    const followingsSpan = document.querySelector(".followings");
-    const profileMoreBtns = document.querySelectorAll(".profile-more-button");
-    const commentCloseBtn = document.querySelector(".comments-close-button");
-    const commentsModal = document.querySelector("#comments-modal");
-    const commentForm = document.querySelector("#comment-form");
+      const followersSpan = document.querySelector(".followers");
+const followingsSpan = document.querySelector(".followings");
+const profileMoreBtns = document.querySelectorAll(".profile-more-button");
+const commentCloseBtn = document.querySelector(".comments-close-button");
+const commentsModal = document.querySelector("#comments-modal");
+const commentForm = document.querySelector("#comment-form");
 
-    function showModal(modalSelector, closeBtnSelector) {
-      const modal = document.querySelector(modalSelector);
-      const closeBtn = document.querySelector(closeBtnSelector);
+function showModal(modalSelector, closeBtnSelector) {
+  const modal = document.querySelector(modalSelector);
+  const closeBtn = document.querySelector(closeBtnSelector);
 
-      modal.classList.add("visible");
+  modal?.classList.add("visible");
 
-      closeBtn.addEventListener("click", () => {
-        modal.classList.remove("visible");
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.remove("visible");
+  });
+}
+
+followersSpan?.addEventListener("click", () => {
+  showModal(".modal-screen", ".close-button");
+});
+
+followingsSpan?.addEventListener("click", () => {
+  showModal(".followings-modal-screen", ".followings-close-button");
+});
+
+profileMoreBtns?.forEach((btn) => {
+  btn?.addEventListener("click", (event) => {
+    const dropdown = event.target
+      .closest(".post-container")
+      ?.querySelector(".dropdown");
+    if (dropdown) dropdown?.classList.toggle("visible");
+  });
+});
+
+function commentIconClickHandler(postId) {
+  commentsModal?.classList.add("visible");
+
+  commentForm
+    ?.querySelectorAll('input[name="postId"]')
+    .forEach((el) => el.remove());
+
+  commentForm.insertAdjacentHTML(
+    "afterbegin",
+    `<input type="hidden" name="postId" value="${postId}" />`
+  );
+}
+
+commentCloseBtn?.addEventListener("click", () => {
+  commentsModal?.classList.remove("visible");
+});
+
+window.addEventListener("keyup", (event) => {
+  if (event.key === "Escape") {
+    document
+      .querySelectorAll(
+        ".modal-screen.visible, .followings-modal-screen.visible, #comments-modal.visible"
+      )
+      .forEach((modal) => {
+        modal?.classList.remove("visible");
       });
-    }
+  }
+});
 
-    followersSpan.addEventListener("click", () => {
-      showModal(".modal-screen", ".close-button");
-    });
 
-    followingsSpan.addEventListener("click", () => {
-      showModal(".followings-modal-screen", ".followings-close-button");
-    });
+      // serch
+const users = <%- JSON.stringify(users || []) %>;
 
-    profileMoreBtns.forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        const dropdown = event.target.closest(".post-container")?.querySelector(".dropdown");
-        if (dropdown) dropdown.classList.toggle("visible");
-      });
-    });
 
-    function commentIconClickHandler(postId) {
-      commentsModal.classList.add("visible");
 
-      commentForm.querySelectorAll('input[name="postId"]').forEach((el) => el.remove());
+const input = document.getElementById("searchInput");
+const searchModal = document.getElementById("searchModall");
+const resultsList = document.getElementById("results");
+const closeModal = document.getElementById("closeModal");
 
-      commentForm.insertAdjacentHTML("afterbegin", `<input type="hidden" name="postId" value="${postId}" />`);
-    }
 
-    commentCloseBtn.addEventListener("click", () => {
-      commentsModal.classList.remove("visible");
-    });
 
-    window.addEventListener("keyup", (event) => {
-      if (event.key === "Escape") {
-        document.querySelectorAll(".modal-screen.visible, .followings-modal-screen.visible, #comments-modal.visible").forEach((modal) => {
-          modal.classList.remove("visible");
-        });
-      }
-    });
+input.addEventListener("input", () => {
+const value = input.value.trim().toLowerCase();
+resultsList.innerHTML = "";
+
+if (value === "") {
+searchModal.style.display = "none";
+return;
+}
+
+const filtered = users.filter((user) => user.username.toLowerCase().startsWith(value));
+
+if (filtered.length > 0) {
+filtered.forEach((user) => {
+  const li = document.createElement("li");
+  li.className = "following-card flex items-center justify-between p-3 border-b";
+  li.innerHTML = `
+    <div class="flex items-center gap-2">
+      <div class="w-12 h-12 rounded-full overflow-hidden">
+        <img src="${user.profileImage || '/images/defaulte/default-user.png'}" class="w-full h-full object-cover" alt="Profile" />
+      </div>
+      <div>
+        <h6 class="text-base font-semibold">${user.name || 'بدون نام'}</h6>
+        <p class="text-sm text-gray-600">@${user.username}</p>
+      </div>
+    </div>
+    <form method="get" action="/pages/${user._id}">
+      <button class="follow-button text-xs px-3 py-1 bg-blue-500 text-white rounded-md">نمایش پروفایل</button>
+    </form>
+  `;
+  resultsList?.appendChild(li);
+});
+searchModal.style.display = "block";
+} else {
+searchModal.style.display = "none";
+}
+});
+
+closeModal.addEventListener("click", () => {
+searchModal.style.display = "none";
+});
+
+
 
     </script>
+    
   </body>
 </html>

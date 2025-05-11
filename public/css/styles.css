@@ -10,6 +10,89 @@ header {
   background: white;
 }
 
+/* Serch */
+#searchModall {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+#searchModall h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+#searchModall ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#searchModall ul li {
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+#closeModal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+#closeModal:hover {
+  color: red;
+}
+.search-result-item {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.result-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.result-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-left: 12px;
+  object-fit: cover;
+}
+
+.result-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+/* End Serch */
+
 .logo {
   font-family: "Poppins-Black" !important;
   color: #0f172a;
