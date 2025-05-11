@@ -47,7 +47,7 @@
               class="w-full h-full bg-transparent border-none"
             >
             <% if (page.profilePicture) { %>
-              <img src="http://localhost:4002<%=page.profilePicture%>"  class="object-cover"
+              <img src="https://social-media-h5e2.onrender.com<%=page.profilePicture%>"  class="object-cover"
               alt="profile cover"/>
             <% } else { %>
               <img src="/images/defaulte/default-user.png" class="object-cover"
@@ -74,7 +74,7 @@
             <!-- Profile Image -->
             <span class="profile-pic-card">
               <% if (page.profilePicture) { %>
-                <img src="http://localhost:4002<%=page.profilePicture%>" class="profile-pic" alt="User Profile Image" />
+                <img src="https://social-media-h5e2.onrender.com<%=page.profilePicture%>" class="profile-pic" alt="User Profile Image" />
               <% } else { %>
                 <img src="/images/defaulte/default-user.png" class="profile-pic" alt="User Profile Image" />
               <% } %>
@@ -164,7 +164,7 @@
                   <div>
                     <header>
                       <img
-                        src="http://localhost:4002<%=post.user.profilePicture%>"
+                        src="https://social-media-h5e2.onrender.com<%=post.user.profilePicture%>"
                         alt="profile picture"
                         class="feed-profile-picture"
                       />
@@ -222,7 +222,7 @@
                     </main>
                     <footer>
                       <div>
-                        <img class="feed-image" src="http://localhost:4002<%= post.media.path %>" alt="" />
+                        <img class="feed-image" src="https://social-media-h5e2.onrender.com<%= post.media.path %>" alt="" />
                       </div>
                       <div class="feed-card-content">
                         <div class="feed-buttons">
@@ -496,7 +496,7 @@
                 <div class="w-12 h-12 rounded-full overflow-hidden">
                   <% if (follower.profilePicture) { %>
                     <img
-                    src="http://localhost:4002<%=follower.profilePicture%>"
+                    src="https://social-media-h5e2.onrender.com<%=follower.profilePicture%>"
                     class="w-full object-cover h-full"
                     alt=""
                   />
@@ -573,7 +573,7 @@
                 <div class="w-12 h-12 rounded-full overflow-hidden">
                   <% if (following.profilePicture) { %>
                     <img
-                    src="http://localhost:4002<%=following.profilePicture%>"
+                    src="https://social-media-h5e2.onrender.com<%=following.profilePicture%>"
                     class="w-full object-cover h-full"
                     alt=""
                   />
@@ -643,9 +643,9 @@
               <div class="border bg-gray-100 p-5 my-3 rounded-md shadow-sm">
                 <div class="flex items-center gap-2 mb-1">
                   <%if(comment.user.profilePicture){%>
-                  <img src="http://localhost:4002/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
+                  <img src="https://social-media-h5e2.onrender.com/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
                     <%}%>
-                  <img src="http://localhost:4002/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
+                  <img src="https://social-media-h5e2.onrender.com/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
                   <div>
                     <span class="text-sm text-gray-600"><%= comment.user.name%></span>
                     <p class="text-xs text-gray-500"><%= new Date(comment.createdAt).toDateString() %></p>
