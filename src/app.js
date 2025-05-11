@@ -60,6 +60,6 @@ app.use((req, res, next) => {
 });
 
 // todo
-// app.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;
