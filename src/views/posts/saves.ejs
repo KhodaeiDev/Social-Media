@@ -6,6 +6,7 @@
     <title>Social Media | Bookmarks</title>
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <!-- <link rel="stylesheet" href="/css/profile.css" /> -->
   </head>
 
   <body>
@@ -400,7 +401,17 @@
             </div>
           </footer>
         </article>
-        <%})%> <%}%>
+        <%})%> <%} else { %>
+
+        <div class="its-empty-saves">
+          <div class="font-Poppins-Bold text-lg text-gray-900">
+            Aww, Nothing to show :(
+          </div>
+          <div>
+            <img src="/images/notfound.png" class="not-found-image" alt="" />
+          </div>
+        </div>
+        <% } %>
       </section>
 
       <section id="bookmark-content"></section>

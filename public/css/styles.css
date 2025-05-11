@@ -953,6 +953,15 @@ textarea {
   border-radius: 4px;
 }
 
+.its-empty-saves {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  margin: 0 auto;
+}
+
 .remove-button span {
   font-size: 14px !important;
   display: flex;
