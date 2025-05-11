@@ -20,9 +20,10 @@
         <div class="flex gap-6 items-center">
           <a class="create-button bg-indigo-600" href="/posts"> Create </a>
           <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
-            <button
+            <a
               id="profileButton"
               class="w-full h-full bg-transparent border-none"
+              href="/pages/<%=user._id%>"
             >
               <%if(user.profilePicture){%>
               <img
@@ -32,12 +33,12 @@
               />
               <%}else{%>
               <img
-                src="https://social-media-h5e2.onrender.com/images/defaulte/default-user.png"
+                src="/images/defaulte/default-user.png"
                 class="object-cover"
                 alt="profile cover"
               />
               <%}%>
-            </button>
+            </a>
           </div>
         </div>
       </nav>
@@ -57,7 +58,7 @@
             />
             <%}else{%>
             <img
-              src="https://social-media-h5e2.onrender.com/images/defaulte/default-user.png"
+              src="/images/defaulte/default-user.png"
               class="object-cover"
               alt="profile cover"
             />
@@ -164,10 +165,7 @@
         <article class="feed-card shadow">
           <!-- Feed header -->
           <header>
-            <a
-              href="https://social-media-h5e2.onrender.com/pages/<%=user._id%>"
-              class="flex items-center gap-3"
-            >
+            <a href="/pages/<%=user._id%>" class="flex items-center gap-3">
               <div>
                 <%if(item.post.user.profilePicture){%>
                 <img
@@ -177,7 +175,7 @@
                 />
                 <%}else{%>
                 <img
-                  src="https://social-media-h5e2.onrender.com/images/defaulte/default-user.png"
+                  src="/images/defaulte/default-user.png"
                   class="object-cover"
                   alt="profile cover"
                 />
