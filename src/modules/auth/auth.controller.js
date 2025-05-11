@@ -95,6 +95,17 @@ exports.login = async (req, res, next) => {
   }
 };
 
+exports.logout = async (req, res, next) => {
+  try {
+    res.clearCookie("access-token");
+
+    req.flash("success", "Your logout Successfully");
+    return res.render("auth/login");
+  } catch (err) {
+    return next(err);
+  }
+};
+
 exports.showForgetPasswordView = async (req, res) => {
   return res.render("auth/recovery");
 };

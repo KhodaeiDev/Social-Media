@@ -8,6 +8,7 @@ router
   .get(controller.showRegisterViews)
   .post(controller.register);
 router.route("/login").get(controller.showLoginViews).post(controller.login);
+router.route("/logout").get(controller.logout);
 
 router.route("/refresh", controller.refreshToken);
 
