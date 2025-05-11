@@ -4,10 +4,7 @@ const authMidlleware = require("./../../middlewares/auth");
 
 const { multerStorage } = require("../../middlewares/uploader");
 
-const upload = multerStorage(
-  "public/images/posts",
-  /jpg|png|jpeg|webp|mp4|mvk/
-);
+const upload = multerStorage("public/images/posts", /jpg|png|jpeg|webp/);
 
 const router = express.Router();
 

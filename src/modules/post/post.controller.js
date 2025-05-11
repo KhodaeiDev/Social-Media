@@ -25,7 +25,7 @@ exports.createPost = async (req, res, next) => {
     }
 
     await postCreateValidator.validate({ description }, { abortEarly: false });
-    const mediaUrlPath = `/images/posts/${req.file.filename}`;
+    const mediaUrlPath = req.file.path;
 
     const post = await postModel.create({
       media: {
