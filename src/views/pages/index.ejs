@@ -628,8 +628,24 @@
     <section id="comments-modal" class="modal-screen comments-modal">
       <section id="modal-card">
         <div class="overflow-y-visible" id="comments_modal">
-          <header class="w-full border-b pb-4 flex-center text-center">
+          <header class="w-full border-b pb-4 flex-center text-center justify-between">
             <p>Comments</p>
+            <button class="max-w-max flex-center comments-close-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </header>
           <main class="mt-4">
             <div>
@@ -656,9 +672,10 @@
               <div class="border bg-gray-100 p-5 my-3 rounded-md shadow-sm">
                 <div class="flex items-center gap-2 mb-1">
                   <%if(comment.user.profilePicture){%>
-                  <img src="/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
-                    <%}%>
-                  <img src="/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
+                  <img src="<%=comment.user.profilePicture%>" class="w-9 rounded-full" alt="Profile Image" />
+                    <%} else{%>
+                      <img src="/images/defaulte/default-user.png" class="w-9 rounded-full" alt="Profile Image" />
+                      <%}%>
                   <div>
                     <span class="text-sm text-gray-600"><%= comment.user.name%></span>
                     <p class="text-xs text-gray-500"><%= new Date(comment.createdAt).toDateString() %></p>
@@ -710,70 +727,59 @@
         });
       }
 
-      const followersSpan = document.querySelector(".followers ");
-      const followingsSpan = document.querySelector(".followings");
-      const profileMoreBtns = document.querySelectorAll(".profile-more-button");
-      const commentsOverlay = document.querySelector('.modal-screen')
+    const followersSpan = document.querySelector(".followers");
+    const followingsSpan = document.querySelector(".followings");
+    const profileMoreBtns = document.querySelectorAll(".profile-more-button");
+    const commentCloseBtn = document.querySelector(".comments-close-button");
+    const commentsModal = document.querySelector("#comments-modal");
+    const commentForm = document.querySelector("#comment-form");
 
+    function showModal(modalSelector, closeBtnSelector) {
+      const modal = document.querySelector(modalSelector);
+      const closeBtn = document.querySelector(closeBtnSelector);
 
-      followersSpan.addEventListener("click", () => {
-        const followersModal = document.querySelector(".modal-screen");
-        const followerModalCloseBtn = document.querySelector(".close-button");
+      modal.classList.add("visible");
 
-        followersModal.classList.add("visible");
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("visible");
+      });
+    }
 
-        followerModalCloseBtn.addEventListener("click", () => {
-          followersModal.classList.remove("visible");
+    followersSpan.addEventListener("click", () => {
+      showModal(".modal-screen", ".close-button");
+    });
+
+    followingsSpan.addEventListener("click", () => {
+      showModal(".followings-modal-screen", ".followings-close-button");
+    });
+
+    profileMoreBtns.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const dropdown = event.target.closest(".post-container")?.querySelector(".dropdown");
+        if (dropdown) dropdown.classList.toggle("visible");
+      });
+    });
+
+    function commentIconClickHandler(postId) {
+      commentsModal.classList.add("visible");
+
+      commentForm.querySelectorAll('input[name="postId"]').forEach((el) => el.remove());
+
+      commentForm.insertAdjacentHTML("afterbegin", `<input type="hidden" name="postId" value="${postId}" />`);
+    }
+
+    commentCloseBtn.addEventListener("click", () => {
+      commentsModal.classList.remove("visible");
+    });
+
+    window.addEventListener("keyup", (event) => {
+      if (event.key === "Escape") {
+        document.querySelectorAll(".modal-screen.visible, .followings-modal-screen.visible, #comments-modal.visible").forEach((modal) => {
+          modal.classList.remove("visible");
         });
-      });
+      }
+    });
 
-      followingsSpan.addEventListener("click", () => {
-        const followingsModal = document.querySelector(
-          ".followings-modal-screen"
-        );
-        const followingsModalCloseBtn = document.querySelector(
-          ".followings-close-button"
-        );
-
-        followingsModal.classList.add("visible");
-
-        followingsModalCloseBtn.addEventListener("click", () => {
-          followingsModal.classList.remove("visible");
-        });
-      });
-
-      profileMoreBtns.forEach((btn) => { 
-        btn.addEventListener("click", (event) => {
-          const removePostBtn = event.target.parentElement.parentElement.querySelector(".dropdown");
-
-          removePostBtn.classList.toggle("visible"); 
-        }); 
-      });
-      
-     
-      function commentIconClickHandler (postId) {
-        const modal = document.querySelector('#comments-modal')
-        const commentForm = document.querySelector('#comment-form')
-        const commentFormInputs = commentForm.querySelectorAll('input')
-        
-        modal.classList.add("visible")
-
-       
-        commentFormInputs.forEach(input => input.remove())
-
-        commentForm.insertAdjacentHTML('afterbegin',
-          `
-            <input type="hidden" name="postId" value=${postId} />
-          `
-        )
-      };
-
-      window.addEventListener('keyup', event => {
-        if (event.keyCode === 27) {
-          let commentsModal = document.querySelector('#comments-modal')
-          commentsModal.classList.remove('visible')
-        }
-      }) 
     </script>
   </body>
 </html>

@@ -59,7 +59,7 @@ exports.showProfileView = async (req, res) => {
   const comments = await commentModel
     .find({})
     // .sort({ _id: -1 })
-    // .populate("user", "name username")
+    .populate("user")
     .lean();
 
   //?Page Followers

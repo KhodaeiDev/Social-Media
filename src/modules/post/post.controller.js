@@ -210,25 +210,27 @@ exports.newComment = async (req, res, next) => {
     const user = req.user;
     const { content, postId } = req.body;
 
+    const backURL = req.get("Referrer");
+
     if (!content) {
       req.flash("error", "Comment text cannot be empty");
-      return res.redirect("back");
+      return res.redirect(backURL);
     }
 
     const post = await postModel.findOne({ _id: postId });
     if (!post) {
       req.flash("error", "Post Not found");
-      return res.redirect("back");
+      return res.redirect(backURL);
     }
 
-    commentModel.create({
+    await commentModel.create({
       content,
       post: postId,
       user: user._id,
     });
 
     req.flash("success", "The comment registered");
-    return res.redirect("back");
+    return res.redirect(backURL);
   } catch (err) {
     next(err);
   }
