@@ -2,9 +2,7 @@ const express = require("express");
 const controller = require("./post.controller");
 const authMidlleware = require("./../../middlewares/auth");
 
-const { multerStorage } = require("../../middlewares/uploader");
-
-const upload = multerStorage("public/images/posts", /jpg|png|jpeg|webp/);
+const upload = require("./../../utils/uploadToLiara");
 
 const router = express.Router();
 

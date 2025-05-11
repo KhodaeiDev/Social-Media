@@ -1,30 +1,31 @@
-const fs = require("fs");
+const { S3 } = require("@aws-sdk/client-s3");
+const multer = require("multer");
 const path = require("path");
-const s3 = require("./liaraStorage");
+const multerS3 = require("multer-s3");
+require("dotenv").config();
 
-exports.uploadToLiara = (filePath, fileName) => {
-  const fileContent = fs.readFileSync(filePath);
+// تنظیمات اتصال به لیارا یا S3
+const s3 = new S3({
+  endpoint: process.env.LIARA_ENDPOINT,
+  credentials: {
+    accessKeyId: process.env.LIARA_ACCESS_KEY,
+    secretAccessKey: process.env.LIARA_SECRET_KEY,
+  },
+  region: "default",
+});
 
-  const extname = path.extname(fileName).toLowerCase();
-  let contentType;
+const upload = multer({
+  storage: multerS3({
+    s3,
+    bucket: process.env.LIARA_BUCKET_NAME,
+    key: function (req, file, cb) {
+      const extname = path.extname(file.originalname);
+      const randomName = `${Date.now()}-${Math.floor(
+        Math.random() * 1e9
+      )}${extname}`;
+      cb(null, randomName);
+    },
+  }),
+});
 
-  if (extname === ".jpg" || extname === ".jpeg") {
-    contentType = "image/jpeg";
-  } else if (extname === ".png") {
-    contentType = "image/png";
-  } else if (extname === ".webp") {
-    contentType = "image/webp";
-  } else {
-    throw new Error({ message: "file type not allowed" });
-  }
-
-  const params = {
-    Bucket: "khodaeidev",
-    Key: fileName, // نام فایل در لیارا
-    Body: fileContent,
-    ACL: "public-read", // اگر باکت عمومی‌ـه
-    ContentType: contentType, // قرار دادن نوع MIME مناسب
-  };
-
-  return s3.upload(params).promise();
-};
+module.exports = upload;

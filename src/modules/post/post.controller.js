@@ -25,12 +25,12 @@ exports.createPost = async (req, res, next) => {
     }
 
     await postCreateValidator.validate({ description }, { abortEarly: false });
-    const mediaUrlPath = req.file.path;
+    const mediaUrlPath = req.file.location;
 
     const post = await postModel.create({
       media: {
         path: mediaUrlPath,
-        filename: req.file.filename,
+        filename: req.file.key,
       },
       description,
       user: user._id,

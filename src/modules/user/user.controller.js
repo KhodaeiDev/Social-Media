@@ -28,14 +28,12 @@ exports.updatePrpfilePicture = async (req, res, next) => {
     );
 
     if (req.file) {
-      const filePath = req.file.path;
-      const fileName = req.file.filename;
-      const result = await uploadToLiara(filePath, fileName);
+      const filePath = req.file.location;
 
       await userModel.findOneAndUpdate(
         { _id: userId },
         {
-          profilePicture: result.Location,
+          profilePicture: filePath,
           name,
           email,
           username,
