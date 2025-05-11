@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const s3 = require("./liaraStorage");
-const fs = require("fs");
 
 exports.uploadToLiara = (filePath, fileName) => {
   const fileContent = fs.readFileSync(filePath);
