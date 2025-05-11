@@ -1,4 +1,3 @@
-const hasAccessToPage = require("./../../utils/hasAccessToPage");
 const followModel = require("./../../model/follow");
 const userModel = require("./../../model/user");
 const postModel = require("./../../model/post");
@@ -9,8 +8,6 @@ const commentModel = require("./../../model/comment");
 exports.showProfileView = async (req, res) => {
   const user = req.user;
   const { pageId } = req.params;
-
-  const hasAccess = await hasAccessToPage(user._id, pageId);
 
   //? Page owner
   const pageOwner = String(user._id) === pageId;
@@ -64,21 +61,6 @@ exports.showProfileView = async (req, res) => {
     // .sort({ _id: -1 })
     // .populate("user", "name username")
     .lean();
-
-  //* Check Access to Page with hasAccessToPage utils
-  if (!hasAccess) {
-    req.flash("error", "follow page to show content");
-    return res.render("pages/index", {
-      user,
-      followed: Boolean(follow),
-      pageId,
-      followers: [],
-      followings: [],
-      hasAccess: false,
-      page,
-      posts: [],
-    });
-  }
 
   //?Page Followers
   let followers = await followModel

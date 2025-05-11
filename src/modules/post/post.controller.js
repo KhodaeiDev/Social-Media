@@ -3,7 +3,6 @@ const likeModel = require("./../../model/like");
 const saveModel = require("./../../model/save");
 const commentModel = require("./../../model/comment");
 const { postCreateValidator } = require("./post.validator");
-const hasAccessTopage = require("./../../utils/hasAccessToPage");
 const path = require("path");
 const fs = require("fs");
 
@@ -55,12 +54,6 @@ exports.likePost = async (req, res, next) => {
       return res.redirect("back");
     }
 
-    const hasAccess = hasAccessTopage(user._id, post.user.toString());
-    if (!hasAccess) {
-      req.flash("error", "Page Private Please Follow First");
-      return res.redirect("back");
-    }
-
     const isExistLike = await likeModel.findOne({
       post: postId,
       user: user._id,
@@ -101,12 +94,6 @@ exports.save = async (req, res, next) => {
     const post = await postModel.findOne({ _id: postId });
     if (!post) {
       req.flash("error", "Post Not Found");
-      return res.redirect("back");
-    }
-
-    const hasAccess = hasAccessTopage(user._id, post.user.toString());
-    if (!hasAccess) {
-      req.flash("error", "Page Private Please Follow First");
       return res.redirect("back");
     }
 

@@ -18,8 +18,6 @@
     <section id="profile-edit-form">
       <header id="profile-edit-header">
         <button class="current-tab">Edit profile</button>
-        <button>Preferences</button>
-        <button>Security</button>
       </header>
 
       <main id="profile-edit-main">
@@ -31,7 +29,7 @@
           >
             <% if (user.profilePicture) { %>
             <img
-              src="https://social-media-h5e2.onrender.com<%=user.profilePicture%>"
+              src="<%=user.profilePicture%>"
               alt="Profile"
               class="object-cover"
             />
