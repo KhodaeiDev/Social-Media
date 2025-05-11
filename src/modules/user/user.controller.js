@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const userModel = require("./../../model/user");
 const { prifileUpdateValidator } = require("./user.validator");
-const uploadToImgbb = require("../../utils/imgbb");
+const { uploadToLiara } = require("../../utils/uploadToLiara");
 
 exports.showUserProfileEdit = async (req, res) => {
   const user = await userModel.findOne({ _id: req.user._id });
@@ -28,14 +28,15 @@ exports.updatePrpfilePicture = async (req, res, next) => {
     );
 
     if (req.file) {
-      const localPath = req.file.path;
-      const imageUrl = await uploadToImgbb(localPath);
+      const filePath = req.file.path;
+      const fileName = req.file.filename;
+      const result = await uploadToLiara(filePath, fileName);
       console.log("test");
 
       await userModel.findOneAndUpdate(
         { _id: userId },
         {
-          profilePicture: imageUrl,
+          profilePicture: result.Location,
           name,
           email,
           username,
