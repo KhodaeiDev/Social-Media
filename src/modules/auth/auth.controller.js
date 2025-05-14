@@ -150,7 +150,7 @@ exports.forgetPassword = async (req, res, next) => {
       html: `<h1>Reset Password Social Media Account</h1>
       <h3>Click on the link below to change your account password</h3>
 
-      <h3><a href="http://localhost:${process.env.PORT}/auth/reset-password/${resetToken}">Reset Password</a></h3>
+      <h3><a href="https://social-media-h5e2.onrender.com/auth/reset-password/${resetToken}">Reset Password</a></h3>
       
       <p>If this message is not for you, you do not need to do anything and do not share the link with others</p>
       `,
