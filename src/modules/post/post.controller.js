@@ -37,7 +37,7 @@ exports.createPost = async (req, res, next) => {
     });
 
     req.flash("success", "Post created successfully");
-    return res.redirect("/posts");
+    return res.redirect(`/pages/${user._id}`);
   } catch (err) {
     next(err);
   }

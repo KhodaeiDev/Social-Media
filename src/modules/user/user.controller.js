@@ -56,7 +56,7 @@ exports.updatePrpfilePicture = async (req, res, next) => {
       { new: true }
     );
     req.flash("success", "User Information Updated Successfully");
-    return res.redirect("/users/edit-profile");
+    return res.redirect(`/pages/${userId}`);
   } catch (err) {
     next(err);
   }
